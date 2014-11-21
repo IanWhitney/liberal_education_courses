@@ -1,5 +1,5 @@
 class CourseRepository < BasicObject
-  def self.all
+  def self.all(_=nil)
     #noop
   end
 
