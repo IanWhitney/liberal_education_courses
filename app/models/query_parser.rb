@@ -1,7 +1,7 @@
 class QueryParser
   attr_accessor :search_type, :search_param
 
-  def self.parse(raw_query)
+  def self.parse(raw_query, query_target)
     self.new(raw_query)
   end
 

@@ -2,7 +2,7 @@ class CourseSearch
   attr_reader :results
 
   def self.search(params=nil, course_repository=CourseRepository)
-    params = QueryParser.parse(params)
+    params = QueryParser.parse(params, course_repository)
     if params.valid?
       self.new(params,course_repository).results
     end
