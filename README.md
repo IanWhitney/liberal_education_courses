@@ -50,6 +50,16 @@ Only returns JSON. Limited course data
 
 ```
 
+An empty {} will be returned if no courses match your criteria
+
+```
+https://liberal_education.umn.edu/courses.json?q=diversified_core=basketweaving
+#=> {}
+
+https://liberal_education.umn.edu/courses.json?q=easy_a
+#=> {}
+```
+
 ## Limits
 
 - If a course is cross-listed under multiple subject/catalog numbers, then it will appear in the results multiple times.
