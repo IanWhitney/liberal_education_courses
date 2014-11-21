@@ -4,52 +4,25 @@ Public endpoint for getting data about courses that satisfy one or more liberal 
 
 ## Get all courses
 
-https://liberal_education.umn.edu/courses
+https://liberal_education.umn.edu/courses.json
 
 ## Get all courses that satisfy Writing Intensive
 
-https://liberal_education.umn.edu/courses/writing_intensive
+https://liberal_education.umn.edu/courses.json?q=writing_intensive=true
 
-## Get all courses that satisfy any designated theme 
+## Get all courses that satisfy a designated theme
 
-https://liberal_education.umn.edu/courses/designated_theme
-
-## Get all courses that satisfy a specific designated theme 
-
-https://liberal_education.umn.edu/courses/designated_theme/DSJ
-
-## Get all courses that satisfy any diversified core
-
-https://liberal_education.umn.edu/courses/diversified_core
+https://liberal_education.umn.edu/courses.json?q=designated_theme=dsj
 
 ## Get all courses that satisfy a specific diversified core
 
-https://liberal_education.umn.edu/courses/diversified_core/ah
-
-## Combine Them
-
-`https://liberal_education.umn.edu/courses/writing_intensive/designated_theme/civ`
-
-Returns all courses that satisfy Writing Intensive and the Civic Life theme.
-
-`https://liberal_education.umn.edu/courses/designated_theme/civ/diversified_core`
-
-Returns all courses that satisfy the Civic Life theme and any diversified core.
-
-`https://liberal_education.umn.edu/courses/designated_theme/civ/diversified_core/his`
-
-Returns all courses that satisfy the Civic Life theme and the Historical Perspectives diversified core.
-
-https://liberal_education.umn.edu/courses/designated_theme/civ/diversified_core/his/writing_intensive
-
-Returns all courses that satisfy the Civic Life theme, the Historical Perspectives diversified core and are Writing Intensive
+https://liberal_education.umn.edu/courses.json?q=diversified_core=ah
 
 ## Return Values
 
 Only returns JSON. Limited course data
 
 ```json
-
 {
   "courses": [{
     "id": "807690",
@@ -59,7 +32,12 @@ Only returns JSON. Limited course data
     "diversified_core": null,
     "designated_theme": null,
     "writing_intensive": true
-  },{
+  }
+```
+
+```json
+{
+  "courses": [{
     "id": "808233",
     "subject": "JOUR",
     "catalog_number": "3775",
@@ -75,21 +53,14 @@ Only returns JSON. Limited course data
 ## Limits
 
 - If a course is cross-listed under multiple subject/catalog numbers, then it will appear in the results multiple times.
-- You can not have two (or more) designated themes or diversified cores is a query.
-  - Meaning you can't ask "Show me all courses that meet either Literature or Social Sciences"
 - Data comes from the Data Warehouse, so it is a day old.
 
 ## Console Interaction
 
 ```ruby
 LiberalEducationCourses.writing_intensive
-LiberalEducationCourses.diversified_core
 LiberalEducationCourses.diversified_core('AH')
-LiberalEducationCourses.designated_theme
 LiberalEducationCourses.designated_theme('civ')
-LiberalEducationCourses.diversified_core.designated_theme('civ')
-LiberalEducationCourses.diversified_core.writing_intensive
-LiberalEducationCourses.diversified_core('AH').diversified_core.designated_theme('civ')
 ```
 
 All of those will return a collection of 0 or more LiberalEducationCourse objects.
