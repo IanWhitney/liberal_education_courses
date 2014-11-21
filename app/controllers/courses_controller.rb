@@ -2,16 +2,7 @@ class CoursesController < ApplicationController
   respond_to :json
 
   def index
-    if params[:q]
-      query = QueryParser.parse(params[:q])
-      if CourseRepository.respond_to?(query.search_type)
-        @courses = CourseRepository.public_send(query.search_type, query.search_param)
-      else
-        @courses = {}
-      end
-    else
-      @courses = CourseRepository.all
-    end
+    @courses = CourseSearch.new(params[:q])
 
     respond_with(@courses) do |format|
       format.json { render json: @courses }
