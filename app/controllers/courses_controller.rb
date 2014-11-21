@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
     @courses = CourseSearch.search(params[:q])
 
     respond_with(@courses) do |format|
-      format.json { render json: @courses }
+      format.json { render }
       format.any  { render nothing: true, status: :bad_request }
     end
   end
