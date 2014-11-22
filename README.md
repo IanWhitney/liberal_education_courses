@@ -25,7 +25,7 @@ Only returns JSON. Limited course data
 ```json
 {
   "courses": [{
-    "id": "807690",
+    "course_id": "807690",
     "subject": "MATH",
     "catalog_number": "4067W",
     "title": "Actuarial Mathematics in Practice",
@@ -38,7 +38,7 @@ Only returns JSON. Limited course data
 ```json
 {
   "courses": [{
-    "id": "808233",
+    "course_id": "808233",
     "subject": "JOUR",
     "catalog_number": "3775",
     "title": "Administrative Law and Regulation for Strategic Communication",
@@ -50,14 +50,14 @@ Only returns JSON. Limited course data
 
 ```
 
-An empty {} will be returned if no courses match your criteria
+An empty courses collection will be returned if no courses match your criteria
 
 ```
-https://liberal_education.umn.edu/courses.json?q=diversified_core=basketweaving
-#=> {}
+https://liberal-education.umn.edu/courses.json?q=diversified_core=basketweaving
+#=> {"courses": []}
 
-https://liberal_education.umn.edu/courses.json?q=easy_a
-#=> {}
+https://liberal-education.umn.edu/courses.json?q=easy_a
+#=> {"courses": []}
 ```
 
 ## Limits
