@@ -4,19 +4,19 @@ Public endpoint for getting data about courses that satisfy one or more liberal 
 
 ## Get all courses
 
-https://liberal_education.umn.edu/courses.json
+https://liberal-education.umn.edu/courses.json
 
 ## Get all courses that satisfy Writing Intensive
 
-https://liberal_education.umn.edu/courses.json?q=writing_intensive=true
+https://liberal-education.umn.edu/courses.json?q=writing_intensive=true
 
 ## Get all courses that satisfy a designated theme
 
-https://liberal_education.umn.edu/courses.json?q=designated_theme=dsj
+https://liberal-education.umn.edu/courses.json?q=designated_theme=dsj
 
 ## Get all courses that satisfy a specific diversified core
 
-https://liberal_education.umn.edu/courses.json?q=diversified_core=ah
+https://liberal-education.umn.edu/courses.json?q=diversified_core=ah
 
 ## Return Values
 
