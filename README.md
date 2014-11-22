@@ -65,32 +65,12 @@ https://liberal_education.umn.edu/courses.json?q=easy_a
 - If a course is cross-listed under multiple subject/catalog numbers, then it will appear in the results multiple times.
 - Data comes from the Data Warehouse, so it is a day old.
 
-## Console Interaction
-
-```ruby
-LiberalEducationCourses.writing_intensive
-LiberalEducationCourses.diversified_core('AH')
-LiberalEducationCourses.designated_theme('civ')
-```
-
-All of those will return a collection of 0 or more LiberalEducationCourse objects.
-
-```ruby
-c = LiberalEducationCourses.writing_intensive.first
-c.id #=> "807690"
-c.subject #=> "MATH"
-c.catalog_number #=> "4067W"
-c.title #=> "Actuarial Mathematics in Practice"
-c.diversified_core #=> nil
-c.designated_theme #=> nil
-c.writing_intensive #=> true
-```
-
 ## Reference
+
+You can pass these in all caps, all lower-case, mixed caps, etc. But they will be all caps in the returned json
 
 ### IDs for Diversified Cores
 
-* You can pass these in all caps, all lower-case, mixed caps, etc. But they will be all caps in the returned json *
 
 - Ah: Arts & Humanities
 - Biol: Biological Sciences
@@ -102,10 +82,48 @@ c.writing_intensive #=> true
 
 ### IDs for Designated Theme
 
-* You can pass these in all caps, all lower-case, mixed caps, etc. But they will be all caps in the returned json *
-
 - Gp: Global Perspectives
 - Ts: Technology and Society
 - Civ: Civic Life and Ethics
 - Dsj: Diversity and Social Justice in the U.S.
 - Env: The Environment
+
+## Development
+
+### Getting Started
+
+- Clone repo
+- `bundle install --path ./vendor/bundle`
+- Copy the database.yml file from app_configurations `rails/liberal_education_service/config` into `./config`
+- `bundle exec rails s`
+
+### Console Interaction
+
+You can work at higher level:
+
+```ruby
+CourseSearch.search('writing_intensive=true')
+CourseSearch.search('diversified_core=ah')
+CourseSearch.search('designated_theme=civ')
+```
+
+Or this nicer syntax
+
+```ruby
+LiberalEducationCourse.writing_intensive
+LiberalEducationCourse.diversified_core('AH')
+LiberalEducationCourse.designated_theme('civ')
+```
+
+Either of those will return a collection of 0 or more LiberalEducationCourse objects.
+
+```ruby
+c = LiberalEducationCourse.writing_intensive.first
+c.id #=> "807690"
+c.subject #=> "MATH"
+c.catalog_number #=> "4067W"
+c.title #=> "Actuarial Mathematics in Practice"
+c.diversified_core #=> nil
+c.designated_theme #=> nil
+c.writing_intensive #=> true
+```
