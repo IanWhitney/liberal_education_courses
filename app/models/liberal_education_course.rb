@@ -85,7 +85,8 @@ class LiberalEducationCourse < ActiveRecord::Base
         designated_theme_courses.crse_attr_value,
         writing_intensive_courses.crse_attr_value
       order by
-        crse.course_title_long
+        offer.subject,
+        offer.catalog_nbr
 EOS
 
     self.find_by_sql(sql)
