@@ -9,7 +9,7 @@ ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 set :deploy_to, '/swadm/apps/liberal_education_courses'
 set :linked_files, %w{config/database.yml}
-set :linked_dirs, %w{log}
+set :linked_dirs, %w{log tmp}
 set :keep_releases, 5
 set :tmp_dir, File.join(fetch(:deploy_to), 'tmp')
 
