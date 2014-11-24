@@ -1,0 +1,3 @@
+RailsBaseURI /liberal_education_courses
+Options -MultiViews
+PassengerRuby /swadm/rbenv/versions/2.1.5/bin/ruby
