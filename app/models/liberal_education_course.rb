@@ -16,8 +16,8 @@ class LiberalEducationCourse < ActiveRecord::Base
     retrieve(filter)
   end
 
-  def self.diversified_core(theme)
-    filter = "diversified_core_courses.crse_attr_value = '#{theme.upcase}'"
+  def self.diversified_core(core)
+    filter = "diversified_core_courses.crse_attr_value = '#{core.upcase}'"
     retrieve(filter)
   end
 
