@@ -6,7 +6,7 @@ require File.expand_path("../config/application", __FILE__)
 Rails.application.load_tasks
 require "rubocop/rake_task"
 
-task default: [:rubocop, :spec]
+task default: [:rubocop, :spec, "brakeman:run"]
 
 desc "Run rubocop"
 task :rubocop do

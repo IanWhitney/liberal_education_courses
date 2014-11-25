@@ -87,8 +87,8 @@ class LiberalEducationCourse < ActiveRecord::Base
         offer.subject,
         offer.catalog_nbr
 EOS
-
-    find_by_sql(sql)
+    sanitized_sql = sanitize_sql(sql)
+    find_by_sql(sanitized_sql)
   end
 
   private_class_method :retrieve, :retrieve_from_db
