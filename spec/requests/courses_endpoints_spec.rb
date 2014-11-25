@@ -33,7 +33,8 @@ RSpec.describe "Client requests courses:" do
 
   describe "Designated Theme" do
     it "returns json with courses collection" do
-      themes = %w(gp TS Civ dSj enV) #mixed case options because the readme says we support that
+      # mixed case options because the readme says we support that
+      themes = %w(gp TS Civ dSj enV)
 
       themes.each do |theme|
         get "courses.json?q=designated_theme=#{theme}"
@@ -54,7 +55,8 @@ RSpec.describe "Client requests courses:" do
 
   describe "Diversified Core", :focus do
     it "returns json with courses collection" do
-      cores = %w(ah Biol HIS lItr maTH phyS socs) #mixed case options because the readme says we support that
+      # mixed case options because the readme says we support that
+      cores = %w(ah Biol HIS lItr maTH phyS socs)
 
       cores.each do |core|
         get "courses.json?q=diversified_core=#{core}"

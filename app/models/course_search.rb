@@ -1,10 +1,10 @@
 class CourseSearch
   attr_reader :results
 
-  def self.search(params=nil, course_repository=CourseRepository)
+  def self.search(params = nil, course_repository = CourseRepository)
     params = QueryParser.parse(params, course_repository)
     if params.valid?
-      self.new(params,course_repository).results
+      new(params, course_repository).results
     end
   end
 
@@ -13,5 +13,6 @@ class CourseSearch
   end
 
   private
+
   attr_writer :results
 end

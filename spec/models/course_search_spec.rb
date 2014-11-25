@@ -18,7 +18,7 @@ RSpec.describe CourseSearch do
         allow(parsed_query).to receive(:search_type).and_return(:all)
         expect(course_repository).to receive(:all).and_return(courses_double)
         expect(QueryParser).to receive(:parse).with(nil, course_repository).and_return(parsed_query)
-        results = CourseSearch.search(nil,course_repository)
+        results = CourseSearch.search(nil, course_repository)
 
         expect(results).to equal(courses_double)
       end

@@ -2,10 +2,10 @@ class QueryParser
   attr_accessor :search_param
 
   def self.parse(raw_query, query_target)
-    self.new(raw_query,query_target)
+    new(raw_query, query_target)
   end
 
-  def initialize(raw_query,query_target)
+  def initialize(raw_query, query_target)
     self.query_target = query_target
 
     if /\w+=\w/.match(raw_query)
@@ -25,6 +25,7 @@ class QueryParser
   end
 
   private
+
   attr_accessor :query_target
   attr_writer :search_type
 end

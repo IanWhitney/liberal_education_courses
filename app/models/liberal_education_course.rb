@@ -1,12 +1,12 @@
 class LiberalEducationCourse < ActiveRecord::Base
   self.table_name = "#{AsrWarehouse.schema_name}.ps_crse_catalog"
 
-  def self.all(_=nil)
+  def self.all(_ = nil)
     filter = "diversified_core_courses.crse_attr_value is not null OR designated_theme_courses.crse_attr_value is not null OR writing_intensive_courses.crse_attr_value is not null"
     retrieve(filter)
   end
 
-  def self.writing_intensive(_)
+  def self.writing_intensive(_ = nil)
     filter = "writing_intensive_courses.crse_attr_value = 'WI'"
     retrieve(filter)
   end
@@ -21,17 +21,16 @@ class LiberalEducationCourse < ActiveRecord::Base
     retrieve(filter)
   end
 
-  private
-
   def self.retrieve(filter)
     if Rails.cache.read(filter)
       Rails.cache.read(filter)
     else
-      Rails.cache.write(filter, self.retrieve_from_db(filter), :expires_in => 24 * 60 * 60)
-      self.retrieve(filter)
+      Rails.cache.write(filter, retrieve_from_db(filter), expires_in: 24 * 60 * 60)
+      retrieve(filter)
     end
   end
 
+  # rubocop:disable MethodLength
   def self.retrieve_from_db(where_clause)
     sql = <<EOS
       select
@@ -89,6 +88,8 @@ class LiberalEducationCourse < ActiveRecord::Base
         offer.catalog_nbr
 EOS
 
-    self.find_by_sql(sql)
+    find_by_sql(sql)
   end
+
+  private_class_method :retrieve, :retrieve_from_db
 end

@@ -8,23 +8,10 @@ set :repo_url, 'git@github.umn.edu:whit0694/liberal_education_courses.git'
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 set :deploy_to, '/swadm/apps/liberal_education_courses'
-set :linked_files, %w{config/database.yml}
-set :linked_dirs, %w{log tmp}
+set :linked_files, %w(config/database.yml)
+set :linked_dirs, %w(log tmp)
 set :keep_releases, 5
 set :tmp_dir, File.join(fetch(:deploy_to), 'tmp')
-
-# Default value for :format is :pretty
-# set :format, :pretty
-
-# Default value for :log_level is :debug
-# set :log_level, :debug
-
-# Default value for :pty is false
-# set :pty, true
-
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
 
 namespace :deploy do
   desc 'Restart application'
