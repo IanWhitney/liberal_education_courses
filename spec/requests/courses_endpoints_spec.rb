@@ -26,7 +26,7 @@ RSpec.describe "Client requests courses:" do
       end
 
       parsed_response["courses"].each do |course|
-        expect(course["writing_intensive"]).to eq('WI')
+        expect(course["writing_intensive"]).to eq("WI")
       end
     end
   end

@@ -1,4 +1,4 @@
-require_relative '../../app/models/query_parser'
+require_relative "../../app/models/query_parser"
 
 RSpec.describe QueryParser do
   describe "parse" do
@@ -15,7 +15,7 @@ RSpec.describe QueryParser do
       it "sets its properties from the query components" do
         it = QueryParser.new("test=hello", Object.new)
         expect(it.search_type).to eq(:test)
-        expect(it.search_param).to eq('hello')
+        expect(it.search_param).to eq("hello")
       end
     end
 
@@ -42,7 +42,7 @@ RSpec.describe QueryParser do
 
     describe "when given an search type the target doesn't understand" do
       it "is invalid" do
-        it = QueryParser.new('bad_search=true', search_target)
+        it = QueryParser.new("bad_search=true", search_target)
         expect(it.valid?).to be_falsey
       end
     end
@@ -59,7 +59,7 @@ RSpec.describe QueryParser do
     describe "when given search type the target understands" do
       it "is valid" do
         allow(search_target).to receive(:writing_intensive)
-        it = QueryParser.new('writing_intensive=true', search_target)
+        it = QueryParser.new("writing_intensive=true", search_target)
 
         expect(it.valid?).to be_truthy
       end

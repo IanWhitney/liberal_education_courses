@@ -11,7 +11,7 @@ Style/IfUnlessModifier:
   MaxLineLength: 0
 
 Style/StringLiterals:
-  Enabled: false
+  EnforcedStyle: double_quotes
 
 Metrics/LineLength:
   Max: 800

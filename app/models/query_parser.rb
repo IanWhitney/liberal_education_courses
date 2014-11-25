@@ -11,7 +11,7 @@ class QueryParser
     if /\w+=\w/.match(raw_query)
       self.search_type, self.search_param = raw_query.split("=")
     elsif raw_query.nil?
-      self.search_type = 'all'
+      self.search_type = "all"
       self.search_param = nil
     end
   end
