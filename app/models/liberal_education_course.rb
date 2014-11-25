@@ -1,5 +1,5 @@
 class LiberalEducationCourse < ActiveRecord::Base
-  self.table_name = "asr_warehouse.ps_crse_catalog"
+  self.table_name = "#{AsrWarehouse.schema_name}.ps_crse_catalog"
 
   def self.all(_=nil)
     filter = "diversified_core_courses.crse_attr_value is not null OR designated_theme_courses.crse_attr_value is not null OR writing_intensive_courses.crse_attr_value is not null"
@@ -43,23 +43,23 @@ class LiberalEducationCourse < ActiveRecord::Base
         designated_theme_courses.crse_attr_value designated_theme,
         writing_intensive_courses.crse_attr_value writing_intensive
       from
-        asr_warehouse.ps_crse_catalog crse
-        left join asr_warehouse.ps_crse_attributes diversified_core_courses
+        #{AsrWarehouse.schema_name}.ps_crse_catalog crse
+        left join #{AsrWarehouse.schema_name}.ps_crse_attributes diversified_core_courses
         on
           crse.crse_id = diversified_core_courses.crse_id
           and diversified_core_courses.crse_attr in ('CLE')
           and diversified_core_courses.crse_attr_value in ('AH','HIS','BIOL','LITR','MATH','PHYS','SOCS')
-        left join asr_warehouse.ps_crse_attributes designated_theme_courses
+        left join #{AsrWarehouse.schema_name}.ps_crse_attributes designated_theme_courses
         on
           crse.crse_id = designated_theme_courses.crse_id
           and designated_theme_courses.crse_attr in ('CLE')
           and designated_theme_courses.crse_attr_value in ('GP','TS','CIV','DSJ','ENV')
-        left join asr_warehouse.ps_crse_attributes writing_intensive_courses
+        left join #{AsrWarehouse.schema_name}.ps_crse_attributes writing_intensive_courses
         on
           crse.crse_id = writing_intensive_courses.crse_id
           and writing_intensive_courses.crse_attr in ('CLE')
           and writing_intensive_courses.crse_attr_value in ('WI')
-        inner join asr_warehouse.ps_crse_offer offer
+        inner join #{AsrWarehouse.schema_name}.ps_crse_offer offer
         on
           crse.crse_id = offer.crse_id
           and crse.effdt = offer.effdt
@@ -67,7 +67,7 @@ class LiberalEducationCourse < ActiveRecord::Base
         1 = 1
         AND crse.effdt=(
           select max(effdt)
-          from asr_warehouse.ps_crse_catalog
+          from #{AsrWarehouse.schema_name}.ps_crse_catalog
           where crse_id=crse.crse_id
           and effdt <= sysdate
           and eff_status = 'A'
