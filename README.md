@@ -4,19 +4,19 @@ Public endpoint for getting data about courses that satisfy one or more liberal 
 
 ## Get all courses
 
-https://liberal-education.umn.edu/courses.json
+https://apps.asr.umn.edu/liberal_education_courses/courses.json
 
 ## Get all courses that satisfy Writing Intensive
 
-https://liberal-education.umn.edu/courses.json?q=writing_intensive=true
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true
 
 ## Get all courses that satisfy a designated theme
 
-https://liberal-education.umn.edu/courses.json?q=designated_theme=dsj
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=dsj
 
 ## Get all courses that satisfy a specific diversified core
 
-https://liberal-education.umn.edu/courses.json?q=diversified_core=ah
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=ah
 
 ## Return Values
 
@@ -53,10 +53,10 @@ Only returns JSON. Limited course data
 An empty courses collection will be returned if no courses match your criteria
 
 ```
-https://liberal-education.umn.edu/courses.json?q=diversified_core=basketweaving
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=basketweaving
 #=> {"courses": []}
 
-https://liberal-education.umn.edu/courses.json?q=easy_a
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=easy_a
 #=> {"courses": []}
 ```
 
