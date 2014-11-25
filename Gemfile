@@ -23,4 +23,5 @@ group :development, :test do
   gem "rspec", "~> 3"
   gem "rspec-rails", "~> 3"
   gem "rubocop", require: false
+  gem "brakeman", require: false
 end
