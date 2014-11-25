@@ -22,7 +22,5 @@ end
 group :development, :test do
   gem "rspec", "~> 3"
   gem "rspec-rails", "~> 3"
+  gem 'rubocop', require: false
 end
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
