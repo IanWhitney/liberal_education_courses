@@ -2,22 +2,22 @@ class LiberalEducationCourse < ActiveRecord::Base
   self.table_name = "#{AsrWarehouse.schema_name}.ps_crse_catalog"
 
   def self.all(_ = nil)
-    filter = "diversified_core_courses.crse_attr_value is not null OR designated_theme_courses.crse_attr_value is not null OR writing_intensive_courses.crse_attr_value is not null"
+    filter = "dc.crse_attr_value is not null OR dt.crse_attr_value is not null OR wi.crse_attr_value is not null"
     retrieve(filter)
   end
 
   def self.writing_intensive(_ = nil)
-    filter = "writing_intensive_courses.crse_attr_value = 'WI'"
+    filter = "wi.crse_attr_value = 'WI'"
     retrieve(filter)
   end
 
   def self.designated_theme(theme)
-    filter = "designated_theme_courses.crse_attr_value = '#{theme.upcase}'"
+    filter = "dt.crse_attr_value = '#{theme.upcase}'"
     retrieve(filter)
   end
 
   def self.diversified_core(core)
-    filter = "diversified_core_courses.crse_attr_value = '#{core.upcase}'"
+    filter = "dc.crse_attr_value = '#{core.upcase}'"
     retrieve(filter)
   end
 
@@ -33,59 +33,65 @@ class LiberalEducationCourse < ActiveRecord::Base
   # rubocop:disable MethodLength
   def self.retrieve_from_db(where_clause)
     sql = <<EOS
-      select
-        offer.subject subject,
-        offer.catalog_nbr catalog_number,
-        crse.crse_id course_id,
-        crse.course_title_long title,
-        diversified_core_courses.crse_attr_value diversified_core,
-        designated_theme_courses.crse_attr_value designated_theme,
-        writing_intensive_courses.crse_attr_value writing_intensive
-      from
-        #{AsrWarehouse.schema_name}.ps_crse_catalog crse
-        left join #{AsrWarehouse.schema_name}.ps_crse_attributes diversified_core_courses
-        on
-          crse.crse_id = diversified_core_courses.crse_id
-          and diversified_core_courses.crse_attr in ('CLE')
-          and diversified_core_courses.crse_attr_value in ('AH','HIS','BIOL','LITR','MATH','PHYS','SOCS')
-        left join #{AsrWarehouse.schema_name}.ps_crse_attributes designated_theme_courses
-        on
-          crse.crse_id = designated_theme_courses.crse_id
-          and designated_theme_courses.crse_attr in ('CLE')
-          and designated_theme_courses.crse_attr_value in ('GP','TS','CIV','DSJ','ENV')
-        left join #{AsrWarehouse.schema_name}.ps_crse_attributes writing_intensive_courses
-        on
-          crse.crse_id = writing_intensive_courses.crse_id
-          and writing_intensive_courses.crse_attr in ('CLE')
-          and writing_intensive_courses.crse_attr_value in ('WI')
-        inner join #{AsrWarehouse.schema_name}.ps_crse_offer offer
-        on
-          crse.crse_id = offer.crse_id
-          and crse.effdt = offer.effdt
-      where
-        1 = 1
-        AND crse.effdt=(
-          select max(effdt)
-          from #{AsrWarehouse.schema_name}.ps_crse_catalog
-          where crse_id=crse.crse_id
-          and effdt <= sysdate
-          and eff_status = 'A'
-        )
-        and
-        (
-          #{where_clause}
-        )
-      group by
-        offer.subject,
-        offer.catalog_nbr,
-        crse.crse_id,
-        crse.course_title_long,
-        diversified_core_courses.crse_attr_value,
-        designated_theme_courses.crse_attr_value,
-        writing_intensive_courses.crse_attr_value
-      order by
-        offer.subject,
-        offer.catalog_nbr
+    with crse_catalog_eff_keys as (
+      select crse_id, max(effdt) as effdt
+      from #{AsrWarehouse.schema_name}.ps_crse_catalog
+      where effdt <= sysdate
+      group by crse_id
+    ),
+    eff_crse_catalog as (
+      select ca.*
+      from #{AsrWarehouse.schema_name}.ps_crse_catalog ca
+        join crse_catalog_eff_keys eff_keys
+          on ca.crse_id = eff_keys.crse_id
+            and ca.effdt = eff_keys.effdt
+    ),
+    cle_courses as (
+      select *
+      from #{AsrWarehouse.schema_name}.ps_crse_attributes
+      where crse_attr = 'CLE'
+    ),
+    diversified_core as (
+      select *
+      from cle_courses
+      where crse_attr_value in ('AH','HIS','BIOL','LITR','MATH','PHYS','SOCS')
+    ),
+    designated_theme as (
+      select *
+      from cle_courses
+      where crse_attr_value in ('GP','TS','CIV','DSJ','ENV')
+    ),
+    writing_intensive as (
+      select *
+      from cle_courses
+      where crse_attr_value in ('WI')
+    )
+    select
+      co.subject as subject,
+      co.catalog_nbr as catalog_number,
+      cc.crse_id as course_id,
+      cc.course_title_long as title,
+      dc.crse_attr_value as diversified_core,
+      dt.crse_attr_value as designated_theme,
+      wi.crse_attr_value as writing_intensive
+    from eff_crse_catalog cc
+      join #{AsrWarehouse.schema_name}.ps_crse_offer co
+        on cc.crse_id = co.crse_id
+          and cc.effdt = co.effdt
+      left join diversified_core dc
+        on cc.crse_id = dc.crse_id
+          and cc.effdt = dc.effdt
+      left join designated_theme dt
+        on cc.crse_id = dt.crse_id
+          and cc.effdt = dt.effdt
+      left join writing_intensive wi
+        on cc.crse_id = wi.crse_id
+          and cc.effdt = wi.effdt
+    where
+    1 = 1
+      and (dc.crse_attr_value is not null or dt.crse_attr_value is not null or wi.crse_attr_value is not null)
+      and (#{where_clause})
+    order by co.subject, co.catalog_nbr
 EOS
     sanitized_sql = sanitize_sql(sql)
     find_by_sql(sanitized_sql)
