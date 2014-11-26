@@ -12,7 +12,7 @@ role :web, %w(asr-web-dev4.oit.umn.edu)
 set :user, "asrwebteam"
 set :server, "asr-web-dev4.oit.umn.edu"
 set :roles, %w(web app)
-set :web_root, "/swadm/www/apps.asr.umn.edu"
+set :web_root, "/swadm/www/apps-test.asr.umn.edu"
 
 server(
   "asr-web-dev4.oit.umn.edu",
