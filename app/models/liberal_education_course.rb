@@ -89,6 +89,7 @@ class LiberalEducationCourse < ActiveRecord::Base
           and cc.effdt = wi.effdt
     where
     1 = 1
+      and cc.eff_status = 'A'
       and (dc.crse_attr_value is not null or dt.crse_attr_value is not null or wi.crse_attr_value is not null)
       and (#{where_clause})
     order by co.subject, co.catalog_nbr
