@@ -2,22 +2,22 @@ class LiberalEducationCourse < ActiveRecord::Base
   self.table_name = "#{AsrWarehouse.schema_name}.ps_crse_catalog"
 
   def self.all(_ = nil)
-    filter = "dc.crse_attr_value is not null OR dt.crse_attr_value is not null OR wi.crse_attr_value is not null"
+    filter = "diversified_core_courses.crse_attr_value is not null OR designated_theme_courses.crse_attr_value is not null OR writing_intensive_courses.crse_attr_value is not null"
     retrieve(filter)
   end
 
   def self.writing_intensive(_ = nil)
-    filter = "wi.crse_attr_value = 'WI'"
+    filter = "writing_intensive_courses.crse_attr_value = 'WI'"
     retrieve(filter)
   end
 
   def self.designated_theme(theme)
-    filter = "dt.crse_attr_value = '#{theme.upcase}'"
+    filter = "designated_theme_courses.crse_attr_value = '#{theme.upcase}'"
     retrieve(filter)
   end
 
   def self.diversified_core(core)
-    filter = "dc.crse_attr_value = '#{core.upcase}'"
+    filter = "diversified_core_courses.crse_attr_value = '#{core.upcase}'"
     retrieve(filter)
   end
 
@@ -67,32 +67,32 @@ class LiberalEducationCourse < ActiveRecord::Base
       where crse_attr_value in ('WI')
     )
     select
-      co.subject as subject,
-      co.catalog_nbr as catalog_number,
-      cc.crse_id as course_id,
-      cc.course_title_long as title,
-      dc.crse_attr_value as diversified_core,
-      dt.crse_attr_value as designated_theme,
-      wi.crse_attr_value as writing_intensive
-    from eff_crse_catalog cc
-      join #{AsrWarehouse.schema_name}.ps_crse_offer co
-        on cc.crse_id = co.crse_id
-          and cc.effdt = co.effdt
-      left join diversified_core dc
-        on cc.crse_id = dc.crse_id
-          and cc.effdt = dc.effdt
-      left join designated_theme dt
-        on cc.crse_id = dt.crse_id
-          and cc.effdt = dt.effdt
-      left join writing_intensive wi
-        on cc.crse_id = wi.crse_id
-          and cc.effdt = wi.effdt
+      course_offer.subject as subject,
+      course_offer.catalog_nbr as catalog_number,
+      eff_courses.crse_id as course_id,
+      eff_courses.course_title_long as title,
+      diversified_core_courses.crse_attr_value as diversified_core,
+      designated_theme_courses.crse_attr_value as designated_theme,
+      writing_intensive_courses.crse_attr_value as writing_intensive
+    from eff_crse_catalog eff_courses
+      join #{AsrWarehouse.schema_name}.ps_crse_offer course_offer
+        on eff_courses.crse_id = course_offer.crse_id
+          and eff_courses.effdt = course_offer.effdt
+      left join diversified_core diversified_core_courses
+        on eff_courses.crse_id = diversified_core_courses.crse_id
+          and eff_courses.effdt = diversified_core_courses.effdt
+      left join designated_theme designated_theme_courses
+        on eff_courses.crse_id = designated_theme_courses.crse_id
+          and eff_courses.effdt = designated_theme_courses.effdt
+      left join writing_intensive writing_intensive_courses
+        on eff_courses.crse_id = writing_intensive_courses.crse_id
+          and eff_courses.effdt = writing_intensive_courses.effdt
     where
     1 = 1
-      and cc.eff_status = 'A'
-      and (dc.crse_attr_value is not null or dt.crse_attr_value is not null or wi.crse_attr_value is not null)
+      and eff_courses.eff_status = 'A'
+      and (diversified_core_courses.crse_attr_value is not null or designated_theme_courses.crse_attr_value is not null or writing_intensive_courses.crse_attr_value is not null)
       and (#{where_clause})
-    order by co.subject, co.catalog_nbr
+    order by course_offer.subject, course_offer.catalog_nbr
 EOS
     sanitized_sql = sanitize_sql(sql)
     find_by_sql(sanitized_sql)
