@@ -16,4 +16,5 @@
 /tmp
 
 vendor/bundle
+config/initializers/local.rb
 config/database.yml
