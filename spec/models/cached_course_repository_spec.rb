@@ -62,9 +62,10 @@ RSpec.describe CachedCourseRepository do
   end
 end
 
+Course = Struct.new(:subject, :course_id, :catalog_number, :title, :diversified_core, :designated_theme, :writing_intensive)
+
 def generate_courses(count)
-  (1..count).each_with_object([]) do |_, ret|
+  (0..count).each_with_object([]) do |_, ret|
     ret << Course.new(rand, rand, rand, rand, rand, rand, rand)
   end
 end
-

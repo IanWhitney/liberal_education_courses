@@ -1,21 +1,12 @@
-Course = Struct.new(:subject, :course_id, :catalog_number, :title, :diversified_core, :designated_theme, :writing_intensive)
-
 class CachedCourseRepository
   def self.empty?
     all.nil?
   end
 
   def self.add(courses)
-    x = courses.each_with_object([]) do |course, ret|
-      ret << Course.new(course.subject,
-                        course.course_id,
-                        course.catalog_number,
-                        course.title,
-                        course.diversified_core,
-                        course.designated_theme,
-                        course.writing_intensive)
+    self.collection = courses.each_with_object([]) do |course, ret|
+      ret << course
     end
-    self.collection = x
   end
 
   def self.all
