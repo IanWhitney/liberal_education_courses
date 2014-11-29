@@ -1,8 +1,8 @@
 require_relative "../../app/models/course_search"
-require_relative "../../app/models/course_repository"
+require_relative "../../app/models/liberal_education_course"
 
 RSpec.describe CourseSearch do
-  let(:course_repository) { double("CourseRepository") }
+  let(:search_target) { double("LiberalEducationCourse") }
   let(:courses_double) { Object.new }
   let(:parsed_query) { instance_double("QueryParser") }
 
@@ -14,11 +14,11 @@ RSpec.describe CourseSearch do
 
   describe "search class method" do
     describe "given no parameters" do
-      it "returns CourseRepository.all" do
+      it "returns LiberalEducationCourse.all" do
         allow(parsed_query).to receive(:search_type).and_return(:all)
-        expect(course_repository).to receive(:all).and_return(courses_double)
-        expect(QueryParser).to receive(:parse).with(nil, course_repository).and_return(parsed_query)
-        results = CourseSearch.search(nil, course_repository)
+        expect(search_target).to receive(:all).and_return(courses_double)
+        expect(QueryParser).to receive(:parse).with(nil, search_target).and_return(parsed_query)
+        results = CourseSearch.search(nil, search_target)
 
         expect(results).to equal(courses_double)
       end
@@ -26,12 +26,12 @@ RSpec.describe CourseSearch do
 
     describe "given parameters" do
       describe "that are valid" do
-        it "uses the parsed parameters to query CourseRepository" do
+        it "uses the parsed parameters to query LiberalEducationCourse" do
           allow(parsed_query).to receive(:search_type).and_return(:writing_intensive)
           allow(parsed_query).to receive(:search_param).and_return("true")
-          expect(QueryParser).to receive(:parse).with("writing_intensive=true", course_repository).and_return(parsed_query)
-          expect(course_repository).to receive(:writing_intensive).with("true")
-          CourseSearch.search("writing_intensive=true", course_repository)
+          expect(QueryParser).to receive(:parse).with("writing_intensive=true", search_target).and_return(parsed_query)
+          expect(search_target).to receive(:writing_intensive).with("true")
+          CourseSearch.search("writing_intensive=true", search_target)
         end
       end
 
@@ -39,8 +39,8 @@ RSpec.describe CourseSearch do
         it "returns nil" do
           allow(parsed_query).to receive(:valid?).and_return(false)
 
-          expect(QueryParser).to receive(:parse).with("invalid=true", course_repository).and_return(parsed_query)
-          expect(CourseSearch.search("invalid=true", course_repository)).to be_nil
+          expect(QueryParser).to receive(:parse).with("invalid=true", search_target).and_return(parsed_query)
+          expect(CourseSearch.search("invalid=true", search_target)).to be_nil
         end
       end
     end
