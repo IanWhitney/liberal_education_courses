@@ -37,4 +37,6 @@ class CachedCourseRepository
   def self.collection=(x)
     Rails.cache.write("all_courses", x, expires_in: 24 * 60 * 60)
   end
+
+  private_class_method :collection, :collection=
 end
