@@ -90,7 +90,6 @@ class LiberalEducationCourse < ActiveRecord::Base
     where
     1 = 1
       and eff_courses.eff_status = 'A'
-      and (diversified_core_courses.crse_attr_value is not null or designated_theme_courses.crse_attr_value is not null or writing_intensive_courses.crse_attr_value is not null)
       and (#{where_clause})
     order by course_offer.subject, course_offer.catalog_nbr
 EOS
