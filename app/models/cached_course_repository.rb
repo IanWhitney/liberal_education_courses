@@ -30,6 +30,10 @@ class CachedCourseRepository
     end
   end
 
+  def self.clear
+    Rails.cache.clear
+  end
+
   def self.collection
     Rails.cache.read("all_courses")
   end

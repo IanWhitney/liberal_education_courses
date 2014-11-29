@@ -2,6 +2,14 @@ require "rails_helper"
 require_relative "../../app/models/cached_course_repository"
 
 RSpec.describe CachedCourseRepository do
+  before do
+    CachedCourseRepository.clear
+  end
+
+  after do
+    CachedCourseRepository.clear
+  end
+
   describe "empty?" do
     it "is true if no courses have been added" do
       expect(CachedCourseRepository.empty?).to be_truthy
