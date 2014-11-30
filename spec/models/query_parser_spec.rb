@@ -40,22 +40,6 @@ RSpec.describe QueryParser do
       end
     end
 
-    describe "when given an search type the target doesn't understand" do
-      it "is invalid" do
-        it = QueryParser.new("bad_search=true", search_target)
-        expect(it.valid?).to be_falsey
-      end
-    end
-
-    describe "when given an nil search type and the target doesn't understand all" do
-      it "is invalid" do
-        search_target = Object.new
-
-        it = QueryParser.new(nil, search_target)
-        expect(it.valid?).to be_falsey
-      end
-    end
-
     describe "when given search type the target understands" do
       it "is valid" do
         allow(search_target).to receive(:writing_intensive)

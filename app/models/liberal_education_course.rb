@@ -1,26 +1,29 @@
 class LiberalEducationCourse
   def self.all(_ = nil)
-    retrieve(nil)
+    nil
   end
 
   def self.writing_intensive(_ = nil)
-    filter = SearchParameter.new(:writing_intensive, "WI")
-    retrieve(filter)
+    SearchParameter.new(:writing_intensive, "WI")
   end
 
   def self.designated_theme(theme)
-    filter = SearchParameter.new(:designated_theme, theme.upcase)
-    retrieve(filter)
+    SearchParameter.new(:designated_theme, theme.upcase)
   end
 
   def self.diversified_core(core)
-    filter = SearchParameter.new(:diversified_core, core.upcase)
-    retrieve(filter)
+    SearchParameter.new(:diversified_core, core.upcase)
   end
 
   def self.subject(subject)
-    filter = SearchParameter.new(:subject, subject.upcase)
+    SearchParameter.new(:subject, subject.upcase)
+  end
+
+  def self.where(attribute, value)
+    filter = send(attribute, value)
     retrieve(filter)
+  rescue
+    []
   end
 
   def self.retrieve(filter)
@@ -29,4 +32,5 @@ class LiberalEducationCourse
     end
     CachedCourseRepository.query(filter)
   end
+  private_class_method :writing_intensive, :designated_theme, :diversified_core, :subject
 end
