@@ -16,7 +16,7 @@ RSpec.describe CourseSearch do
     describe "given no parameters" do
       it "returns LiberalEducationCourse.all" do
         allow(parsed_query).to receive(:search_type).and_return(:all)
-        expect(search_target).to receive(:all).and_return(courses_double)
+        expect(search_target).to receive(:where).and_return(courses_double)
         expect(QueryParser).to receive(:parse).with(nil, search_target).and_return(parsed_query)
         results = CourseSearch.search(nil, search_target)
 
@@ -30,7 +30,7 @@ RSpec.describe CourseSearch do
           allow(parsed_query).to receive(:search_type).and_return(:writing_intensive)
           allow(parsed_query).to receive(:search_param).and_return("true")
           expect(QueryParser).to receive(:parse).with("writing_intensive=true", search_target).and_return(parsed_query)
-          expect(search_target).to receive(:writing_intensive).with("true")
+          expect(search_target).to receive(:where).with(:writing_intensive, "true")
           CourseSearch.search("writing_intensive=true", search_target)
         end
       end

@@ -118,15 +118,15 @@ CourseSearch.search('designated_theme=civ')
 Or this nicer syntax
 
 ```ruby
-LiberalEducationCourse.writing_intensive
-LiberalEducationCourse.diversified_core('AH')
-LiberalEducationCourse.designated_theme('civ')
+LiberalEducationCourse.where(:writing_intensive, true)
+LiberalEducationCourse.where(:diversified_core, 'AH')
+LiberalEducationCourse.where(:designated_theme, 'civ')
 ```
 
 Either of those will return a collection of 0 or more LiberalEducationCourse objects.
 
 ```ruby
-c = LiberalEducationCourse.writing_intensive.first
+c = LiberalEducationCourse.where(:writing_intensive, true)
 c.id #=> "807690"
 c.subject #=> "MATH"
 c.catalog_number #=> "4067W"

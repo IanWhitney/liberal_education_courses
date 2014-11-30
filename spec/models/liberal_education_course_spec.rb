@@ -14,8 +14,15 @@ RSpec.describe LiberalEducationCourse do
         rand_result = rand
         expect(SearchParameter).to receive(:new).with(filter, "WI").and_return(search_param_double)
         expect(CachedCourseRepository).to receive(:query).with(search_param_double).and_return(rand_result)
-        expect(LiberalEducationCourse.public_send(filter, "WI")).to eq(rand_result)
+        expect(LiberalEducationCourse.where(filter, "WI")).to eq(rand_result)
       end
+    end
+  end
+
+  describe "invalid searches" do
+    it "returns an empty set" do
+      expect(LiberalEducationCourse.where(:diversified_core, "basketweaving")).to eq([])
+      expect(LiberalEducationCourse.where(:easy_a, nil)).to eq([])
     end
   end
 end

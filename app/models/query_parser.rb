@@ -21,7 +21,7 @@ class QueryParser
   end
 
   def valid?
-    search_type && query_target.respond_to?(search_type)
+    !search_type.nil?
   end
 
   private
