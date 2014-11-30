@@ -13,12 +13,10 @@ class CachedCourseRepository
     collection
   end
 
-  def self.query(search_parameter)
-    search_parameters = Array(search_parameter)
+  def self.query(search_parameters)
+    search_parameters = Array(search_parameters)
     if search_parameters.any?
-      search_parameters.each_with_object([]) do |param, ret|
-        ret << (collection.select { |c| c.public_send(param.attribute) == param.value }).to_set
-      end.inject(:intersection).to_a
+      search_results(search_parameters)
     else
       all
     end
@@ -36,5 +34,12 @@ class CachedCourseRepository
     Rails.cache.write("all_courses", x, expires_in: 24 * 60 * 60)
   end
 
-  private_class_method :collection, :collection=
+  def self.search_results(search_parameters)
+    result_sets = search_parameters.each_with_object([]) do |param, ret|
+      ret << (collection.select { |c| c.public_send(param.attribute) == param.value }).to_set
+    end
+    result_sets.inject(:intersection).to_a
+  end
+
+  private_class_method :collection, :collection=, :search_results
 end
