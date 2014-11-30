@@ -18,6 +18,11 @@ class LiberalEducationCourse
     retrieve(filter)
   end
 
+  def self.subject(subject)
+    filter = SearchParameter.new(:subject, subject.upcase)
+    retrieve(filter)
+  end
+
   def self.retrieve(filter)
     if CachedCourseRepository.empty?
       CachedCourseRepository.add(DbCourseRepository.all)

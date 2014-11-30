@@ -2,21 +2,29 @@
 
 Public endpoint for getting data about courses that satisfy one or more liberal education requirements
 
-## Get all courses
+## Querying on Liberal Education criteria
+
+### Get all courses
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json
 
-## Get all courses that satisfy Writing Intensive
+### Get all courses that satisfy Writing Intensive
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true
 
-## Get all courses that satisfy a designated theme
+### Get all courses that satisfy a designated theme
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=dsj
 
-## Get all courses that satisfy a specific diversified core
+### Get all courses that satisfy a specific diversified core
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=ah
+
+## Querying on Subject
+
+### Get all Liberal Education courses taught in JOUR
+
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=subject=JOUR
 
 ## Return Values
 
