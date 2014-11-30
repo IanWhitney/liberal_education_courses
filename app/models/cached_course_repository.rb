@@ -14,8 +14,11 @@ class CachedCourseRepository
   end
 
   def self.query(search_parameter)
-    if search_parameter
-      collection.select { |c| c.public_send(search_parameter.attribute) == search_parameter.value }
+    search_parameters = Array(search_parameter)
+    if search_parameters.any?
+      search_parameters.each_with_object([]) do |param, ret|
+        ret << (collection.select { |c| c.public_send(param.attribute) == param.value }).to_set
+      end.inject(:intersection).to_a
     else
       all
     end

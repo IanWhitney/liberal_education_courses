@@ -51,6 +51,21 @@ RSpec.describe CachedCourseRepository do
         expect(results).to eq(CachedCourseRepository.all)
       end
     end
+
+    describe "with multiple filters" do
+      it "returns the courses that match all filters" do
+        course_one =   Course.new("matching_subject", rand, rand, rand, "WI", rand, rand)
+        course_two =   Course.new("matching_subject", rand, rand, rand, "WI", rand, rand)
+        course_three = Course.new("non_matching_subject", rand, rand, rand, "WI", rand, rand)
+        CachedCourseRepository.add([course_one, course_two, course_three])
+        filter_one = SearchParameter.new(:subject, "matching_subject")
+        filter_two = SearchParameter.new(:diversified_core, "WI")
+        results = CachedCourseRepository.query([filter_one, filter_two])
+        expect(results).to include(course_one)
+        expect(results).to include(course_two)
+        expect(results).not_to include(course_three)
+      end
+    end
   end
 
   describe "add" do
