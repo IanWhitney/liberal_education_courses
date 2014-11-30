@@ -21,6 +21,7 @@ RSpec.describe "Client requests courses:" do
       expect(parsed_response.keys).to include("courses")
       random_course = parsed_response["courses"].sample
       required_keys = %w(course_id subject catalog_number title diversified_core designated_theme writing_intensive)
+
       required_keys.each do |required_key|
         expect(random_course.keys).to include(required_key)
       end

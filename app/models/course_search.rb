@@ -1,15 +1,15 @@
 class CourseSearch
   attr_reader :results
 
-  def self.search(params = nil, course_repository = CourseRepository)
-    params = QueryParser.parse(params, course_repository)
+  def self.search(params = nil, search_target = LiberalEducationCourse)
+    params = QueryParser.parse(params, search_target)
     if params.valid?
-      new(params, course_repository).results
+      new(params, search_target).results
     end
   end
 
-  def initialize(params, course_repository)
-    self.results = course_repository.public_send(params.search_type, params.search_param)
+  def initialize(params, search_target)
+    self.results = search_target.public_send(params.search_type, params.search_param)
   end
 
   private
