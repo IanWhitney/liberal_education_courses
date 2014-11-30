@@ -4,17 +4,17 @@ class LiberalEducationCourse
   end
 
   def self.writing_intensive(_ = nil)
-    filter = { writing_intensive: "WI" }
+    filter = SearchParameter.new(:writing_intensive, "WI")
     retrieve(filter)
   end
 
   def self.designated_theme(theme)
-    filter = { designated_theme: theme.upcase }
+    filter = SearchParameter.new(:designated_theme, theme.upcase)
     retrieve(filter)
   end
 
   def self.diversified_core(core)
-    filter = { diversified_core: core.upcase }
+    filter = SearchParameter.new(:diversified_core, core.upcase)
     retrieve(filter)
   end
 

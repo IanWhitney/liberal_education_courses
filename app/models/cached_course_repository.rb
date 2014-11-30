@@ -13,9 +13,9 @@ class CachedCourseRepository
     collection
   end
 
-  def self.query(filter)
-    if filter
-      collection.select { |c| c.public_send(filter.keys.first) == filter.values.first }
+  def self.query(search_parameter)
+    if search_parameter
+      collection.select { |c| c.public_send(search_parameter.attribute) == search_parameter.value }
     else
       all
     end

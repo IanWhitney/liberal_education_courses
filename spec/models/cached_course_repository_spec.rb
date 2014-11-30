@@ -38,7 +38,7 @@ RSpec.describe CachedCourseRepository do
     describe "with a provided filter" do
       it "returns the courses that match the filter options" do
         course = @courses_to_add.sample
-        filter = { diversified_core: course.diversified_core }
+        filter = SearchParameter.new(:diversified_core, course.diversified_core)
         results = CachedCourseRepository.query(filter)
         matched = @courses_to_add.select { |c| c.diversified_core == course.diversified_core }
         expect(results).to eq(matched)
