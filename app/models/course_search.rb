@@ -9,7 +9,7 @@ class CourseSearch
   end
 
   def initialize(params, search_target)
-    self.results = search_target.where(params.search_type, params.search_param)
+    self.results = search_target.where(params.search_type => params.search_param)
   end
 
   private

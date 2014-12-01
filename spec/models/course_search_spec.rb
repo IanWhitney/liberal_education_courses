@@ -30,7 +30,7 @@ RSpec.describe CourseSearch do
           allow(parsed_query).to receive(:search_type).and_return(:writing_intensive)
           allow(parsed_query).to receive(:search_param).and_return("true")
           expect(QueryParser).to receive(:parse).with("writing_intensive=true", search_target).and_return(parsed_query)
-          expect(search_target).to receive(:where).with(:writing_intensive, "true")
+          expect(search_target).to receive(:where).with(writing_intensive: "true")
           CourseSearch.search("writing_intensive=true", search_target)
         end
       end

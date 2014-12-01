@@ -19,8 +19,8 @@ class LiberalEducationCourse
     SearchParameter.new(:subject, subject.upcase)
   end
 
-  def self.where(attribute, value)
-    filter = send(attribute, value)
+  def self.where(condition)
+    filter = send(condition.keys.first, condition.values.first)
     retrieve(filter)
   rescue
     []
