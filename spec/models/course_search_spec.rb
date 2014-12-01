@@ -1,4 +1,5 @@
 require_relative "../../app/models/course_search"
+require_relative "../../app/models/query_parser"
 require_relative "../../app/models/liberal_education_course"
 
 RSpec.describe CourseSearch do
