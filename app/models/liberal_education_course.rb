@@ -1,7 +1,9 @@
 class LiberalEducationCourse
-  def self.where(condition)
-    filter = send(condition.keys.first, condition.values.first)
-    retrieve(filter)
+  def self.where(conditions)
+    filters = conditions.each_with_object([]) do |condition, ret|
+      ret << send(condition[0], condition[1])
+    end
+    retrieve(filters)
   rescue
     []
   end
