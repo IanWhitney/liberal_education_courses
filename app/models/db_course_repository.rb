@@ -65,6 +65,8 @@ class DbCourseRepository < ActiveRecord::Base
           or designated_theme_courses.crse_attr_value is not null
           or writing_intensive_courses.crse_attr_value is not null
         )
+    and course_offer.institution = 'UMNTC'
+    and course_offer.campus = 'UMNTC'
     and eff_courses.eff_status = 'A'
     order by course_offer.subject, course_offer.catalog_nbr
 EOS
