@@ -1,4 +1,18 @@
 class LiberalEducationCourse
+  def self.where(condition)
+    filter = send(condition.keys.first, condition.values.first)
+    retrieve(filter)
+  rescue
+    []
+  end
+
+  def self.retrieve(filter)
+    if CachedCourseRepository.empty?
+      CachedCourseRepository.add(DbCourseRepository.all)
+    end
+    CachedCourseRepository.query(filter)
+  end
+
   def self.all(_ = nil)
     nil
   end
@@ -19,18 +33,5 @@ class LiberalEducationCourse
     SearchParameter.new(:subject, subject.upcase)
   end
 
-  def self.where(condition)
-    filter = send(condition.keys.first, condition.values.first)
-    retrieve(filter)
-  rescue
-    []
-  end
-
-  def self.retrieve(filter)
-    if CachedCourseRepository.empty?
-      CachedCourseRepository.add(DbCourseRepository.all)
-    end
-    CachedCourseRepository.query(filter)
-  end
-  private_class_method :writing_intensive, :designated_theme, :diversified_core, :subject
+  private_class_method :writing_intensive, :designated_theme, :diversified_core, :subject, :all, :retrieve
 end
