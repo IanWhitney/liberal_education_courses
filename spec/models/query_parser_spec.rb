@@ -4,7 +4,7 @@ RSpec.describe QueryParser do
   describe "parse" do
     it "creates an instance of query parser" do
       returned = QueryParser.parse("test=hello")
-      expect(returned).to eq(test: "hello")
+      expect(returned).to eq(test: "HELLO")
     end
   end
 
@@ -15,7 +15,7 @@ RSpec.describe QueryParser do
       it "sets its properties from the query components" do
         it = QueryParser.new("test=hello")
         expect(it.search_type).to eq(:test)
-        expect(it.search_param).to eq("hello")
+        expect(it.search_param).to eq("HELLO")
       end
     end
 
@@ -23,7 +23,7 @@ RSpec.describe QueryParser do
       it "defaults to search all" do
         it = QueryParser.new(nil)
         expect(it.search_type).to eq(:all)
-        expect(it.search_param).to be_nil
+        expect(it.search_param).to be_empty
       end
     end
   end

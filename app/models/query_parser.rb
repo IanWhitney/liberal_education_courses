@@ -1,6 +1,4 @@
 class QueryParser
-  attr_accessor :search_param
-
   def self.parse(raw_query)
     x = new(raw_query)
     { x.search_type => x.search_param }
@@ -19,7 +17,15 @@ class QueryParser
     @search_type ? @search_type.to_sym : nil
   end
 
+  def search_param
+    if search_type == :writing_intensive
+      "WI"
+    else
+      @search_param.to_s.upcase
+    end
+  end
+
   private
 
-  attr_writer :search_type
+  attr_writer :search_type, :search_param
 end
