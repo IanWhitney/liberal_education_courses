@@ -6,6 +6,10 @@ class SearchParameter
     self.value = value
   end
 
+  def all?
+    attribute == :all
+  end
+
   private
 
   attr_writer :attribute, :value
