@@ -26,6 +26,20 @@ https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_co
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=subject=JOUR
 
+## Querying on Other Attributes
+
+You can search based on any attribute returned in the JSON. But searching on something like course_id or catalog_number won't return many records. 
+
+## Querying on More Than One Attribute
+
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true%2Csubject=JOUR
+
+Will return courses that are writing intensive and have the subject of JOUR
+
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true%2Cdiversified_core=ah
+
+Will return courses that are writing intensive and have the American History diversified_core
+
 ## Return Values
 
 Only returns JSON. Limited course data
