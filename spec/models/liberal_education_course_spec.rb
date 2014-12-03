@@ -7,37 +7,45 @@ RSpec.describe LiberalEducationCourse do
     allow(CachedCourseRepository).to receive(:empty?).and_return(false)
   end
 
+  describe "all" do
+    it "returns the CachedCourseRepository.all results" do
+      rand_result = rand
+      expect(CachedCourseRepository).to receive(:all).and_return(rand_result)
+      expect(LiberalEducationCourse.all).to eq(rand_result)
+    end
+  end
+
   describe "where" do
     describe "single filters" do
       it "search the repo with just one filter" do
         [:writing_intensive, :designated_theme, :diversified_core, :subject].each do |filter|
-          search_param_double = double("SearchParameter")
           rand_result = rand
-          expect(SearchParameter).to receive(:new).with(filter, "WI").and_return(search_param_double)
-          expect(CachedCourseRepository).to receive(:query).with([search_param_double]).and_return(rand_result)
-          expect(LiberalEducationCourse.where(filter => "WI")).to eq(rand_result)
+          param = SearchParameter.new(filter, "WI")
+          expect(CachedCourseRepository).to receive(:search).with([param]).and_return(rand_result)
+          expect(LiberalEducationCourse.where([param])).to eq(rand_result)
         end
       end
     end
 
     describe "multiple filters" do
       it "searches the repo with all filters" do
-        search_param_double = double("SearchParameter")
         rand_result = rand
-        search_filters = { writing_intensive: "#{rand}", diversified_core: "#{rand}" }
 
-        expect(SearchParameter).to receive(:new).twice.and_return(search_param_double)
+        wi_param = SearchParameter.new(:writing_intensive, "WI")
+        dc_param = SearchParameter.new(:diversified_core, "WI")
 
-        expect(CachedCourseRepository).to receive(:query).with([search_param_double, search_param_double]).and_return(rand_result)
+        expect(CachedCourseRepository).to receive(:search).with([wi_param, dc_param]).and_return(rand_result)
 
-        expect(LiberalEducationCourse.where(search_filters)).to eq(rand_result)
+        expect(LiberalEducationCourse.where([wi_param, dc_param])).to eq(rand_result)
       end
     end
 
     describe "invalid searches" do
       it "returns an empty set" do
-        expect(LiberalEducationCourse.where(diversified_core: "basketweaving")).to eq([])
-        expect(LiberalEducationCourse.where(easy_a: nil)).to eq([])
+        invalid_param = SearchParameter.new(:diversified_core, "basketweaving")
+        expect(LiberalEducationCourse.where([invalid_param])).to eq([])
+        invalid_param = SearchParameter.new(:easy_a, nil)
+        expect(LiberalEducationCourse.where([invalid_param])).to eq([])
       end
     end
   end
