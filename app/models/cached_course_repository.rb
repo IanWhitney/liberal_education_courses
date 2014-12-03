@@ -13,13 +13,8 @@ class CachedCourseRepository
     collection
   end
 
-  def self.query(search_parameters)
-    search_parameters = Array(search_parameters)
-    if search_parameters.any?
-      search_results(search_parameters)
-    else
-      all
-    end
+  def self.search(search_parameters)
+    search_results(search_parameters)
   end
 
   def self.clear
