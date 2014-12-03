@@ -10,7 +10,11 @@ RSpec.describe CoursesController do
     describe "without parameters" do
       it "runs a course search without params" do
         course_double = [rand]
-        expect(CourseSearch).to receive(:search).with(nil).and_return(course_double)
+        parameters_double = double("SearchParameters")
+
+        expect(SearchParameters).to receive(:parse).with(nil).and_return(parameters_double)
+
+        expect(CourseSearch).to receive(:search).with(parameters_double, LiberalEducationCourse).and_return(course_double)
 
         get :index, format: :json
         expect(assigns(:courses)).to eq(course_double)
@@ -20,13 +24,13 @@ RSpec.describe CoursesController do
     describe "with parameters" do
       it "searches with the requested parameters" do
         course_double = [rand]
-        parameter_options = ["writing_intensive=true", "designated_theme=gp", "diversified_core=litr"]
-        parameter_options.each do |query_string|
-          expect(CourseSearch).to receive(:search).with(query_string).and_return(course_double)
+        parameters_double = double("SearchParameters")
 
-          get :index, format: :json, q: query_string
-          expect(assigns(:courses)).to eq(course_double)
-        end
+        expect(SearchParameters).to receive(:parse).with("designated_theme=gp").and_return(parameters_double)
+
+        expect(CourseSearch).to receive(:search).with(parameters_double, LiberalEducationCourse).and_return(course_double)
+        get :index, format: :json, q: "designated_theme=gp"
+        expect(assigns(:courses)).to eq(course_double)
       end
     end
   end
