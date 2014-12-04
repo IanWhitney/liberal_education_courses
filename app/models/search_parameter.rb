@@ -1,16 +1,5 @@
-class SearchParameter
-  attr_accessor :attribute, :value
-
-  def initialize(attribute, value)
-    self.attribute = attribute
-    self.value = value
-  end
-
+SearchParameter = Struct.new(:attribute, :value) do
   def all?
     attribute == :all
   end
-
-  private
-
-  attr_writer :attribute, :value
 end
