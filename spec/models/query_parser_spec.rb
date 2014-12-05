@@ -26,5 +26,13 @@ RSpec.describe QueryParser do
         expect(it.search_param).to be_empty
       end
     end
+
+    describe "without a writing intensive query" do
+      it "converts the search_param to WI" do
+        it = QueryParser.new("writing_intensive=#{rand}")
+        expect(it.search_type).to eq(:writing_intensive)
+        expect(it.search_param).to eq("WI")
+      end
+    end
   end
 end
