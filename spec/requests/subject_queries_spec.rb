@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Filtering by Subject" do
   describe "All courses in a subject" do
     it "returns json with liberal education courses taught in that subject" do
-      get "courses.json?q=subject=JOUR"
+      get "/courses.json?q=subject=JOUR"
       parsed_response = JSON.parse(response.body)
 
       expect(parsed_response["courses"].any?).to be_truthy
