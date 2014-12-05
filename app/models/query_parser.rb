@@ -1,13 +1,10 @@
 class QueryParser
-  attr_accessor :search_param
-
-  def self.parse(raw_query, query_target)
-    new(raw_query, query_target)
+  def self.parse(raw_query)
+    x = new(raw_query)
+    { x.search_type => x.search_param }
   end
 
-  def initialize(raw_query, query_target)
-    self.query_target = query_target
-
+  def initialize(raw_query)
     if /\w+=\w/.match(raw_query)
       self.search_type, self.search_param = raw_query.split("=")
     elsif raw_query.nil?
@@ -20,12 +17,15 @@ class QueryParser
     @search_type ? @search_type.to_sym : nil
   end
 
-  def valid?
-    search_type && query_target.respond_to?(search_type)
+  def search_param
+    if search_type == :writing_intensive
+      "WI"
+    else
+      @search_param.to_s.upcase
+    end
   end
 
   private
 
-  attr_accessor :query_target
-  attr_writer :search_type
+  attr_writer :search_type, :search_param
 end

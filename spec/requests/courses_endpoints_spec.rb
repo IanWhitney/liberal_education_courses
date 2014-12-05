@@ -54,7 +54,7 @@ RSpec.describe "Client requests courses:" do
     end
   end
 
-  describe "Diversified Core", :focus do
+  describe "Diversified Core" do
     it "returns json with courses collection" do
       # mixed case options because the readme says we support that
       cores = %w(ah Biol HIS lItr maTH phyS socs)
@@ -72,6 +72,26 @@ RSpec.describe "Client requests courses:" do
         parsed_response["courses"].each do |course|
           expect(course["diversified_core"]).to eq(core.upcase)
         end
+      end
+    end
+  end
+
+  describe "Multiple criteria queries" do
+    it "returns courses that match all criteria" do
+      get "courses.json?q=writing_intensive=true%2Csubject=JOUR"
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response.keys).to include("courses")
+      parsed_response["courses"].each do |course|
+        expect(course["writing_intensive"]).to eq("WI")
+        expect(course["subject"]).to eq("JOUR")
+      end
+
+      get "courses.json?q=writing_intensive=true%2Cdiversified_core=ah"
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response.keys).to include("courses")
+      parsed_response["courses"].each do |course|
+        expect(course["writing_intensive"]).to eq("WI")
+        expect(course["diversified_core"]).to eq("AH")
       end
     end
   end

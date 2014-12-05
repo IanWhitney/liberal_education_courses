@@ -2,21 +2,48 @@
 
 Public endpoint for getting data about courses that satisfy one or more liberal education requirements
 
-## Get all courses
+## Querying on Liberal Education criteria
+
+### Get all courses
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json
 
-## Get all courses that satisfy Writing Intensive
+### Get all courses that satisfy Writing Intensive
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true
 
-## Get all courses that satisfy a designated theme
+### Get all courses that satisfy a designated theme
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=dsj
 
-## Get all courses that satisfy a specific diversified core
+### Get all courses that satisfy a specific diversified core
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=ah
+
+## Querying on Subject
+
+### Get all Liberal Education courses taught in JOUR
+
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=subject=JOUR
+
+## Querying on Other Attributes
+
+You can search based on any attribute returned in the JSON except for title. All of the below will work, but they won't return many courses.
+
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=course_id=807690
+- https://apps.asr.umn.edu/courses.json?q=subject=math,catalog_number=4067W
+
+## Querying on More Than One Attribute
+
+Separate attributes with a comma. Courses that match all providided attributes will be returned.
+
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true%2Csubject=JOUR
+
+Will return courses that are writing intensive and that have the subject of JOUR
+
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true%2Cdiversified_core=ah
+
+Will return courses that are writing intensive and that have the American History diversified_core
 
 ## Return Values
 
@@ -102,23 +129,24 @@ You can pass these in all caps, all lower-case, mixed caps, etc. But they will b
 You can work at higher level:
 
 ```ruby
-CourseSearch.search('writing_intensive=true')
-CourseSearch.search('diversified_core=ah')
-CourseSearch.search('designated_theme=civ')
+CourseSearch.search(
+  SearchParameters.parse('writing_intensive=true')
+)
 ```
 
-Or this nicer syntax
+Or,
 
 ```ruby
-LiberalEducationCourse.writing_intensive
-LiberalEducationCourse.diversified_core('AH')
-LiberalEducationCourse.designated_theme('civ')
+p = SearchParameter.new(:writing_intensive, 'WI')
+LiberalEducationCourse.where([p])
 ```
 
 Either of those will return a collection of 0 or more LiberalEducationCourse objects.
 
 ```ruby
-c = LiberalEducationCourse.writing_intensive.first
+c = CourseSearch.search(
+  SearchParameters.parse('writing_intensive=true')
+).first
 c.id #=> "807690"
 c.subject #=> "MATH"
 c.catalog_number #=> "4067W"

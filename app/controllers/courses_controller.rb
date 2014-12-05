@@ -19,7 +19,9 @@ class CoursesController < ApplicationController
   respond_to :json
 
   def index
-    @courses = CourseSearch.search(params[:q])
+    search_parameters = SearchParameters.parse(params[:q])
+
+    @courses = CourseSearch.search(search_parameters, LiberalEducationCourse)
 
     respond_with(@courses) do |format|
       format.json { render }
