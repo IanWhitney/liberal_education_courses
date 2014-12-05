@@ -28,17 +28,22 @@ https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=subject=JOUR
 
 ## Querying on Other Attributes
 
-You can search based on any attribute returned in the JSON. But searching on something like course_id or catalog_number won't return many records. 
+You can search based on any attribute returned in the JSON except for title. All of the below will work, but they won't return many courses.
+
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=course_id=807690
+- https://apps.asr.umn.edu/courses.json?q=subject=math,catalog_number=4067W
 
 ## Querying on More Than One Attribute
 
+Separate attributes with a comma. Courses that match all providided attributes will be returned.
+
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true%2Csubject=JOUR
 
-Will return courses that are writing intensive and have the subject of JOUR
+Will return courses that are writing intensive and that have the subject of JOUR
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true%2Cdiversified_core=ah
 
-Will return courses that are writing intensive and have the American History diversified_core
+Will return courses that are writing intensive and that have the American History diversified_core
 
 ## Return Values
 
@@ -124,23 +129,24 @@ You can pass these in all caps, all lower-case, mixed caps, etc. But they will b
 You can work at higher level:
 
 ```ruby
-CourseSearch.search('writing_intensive=true')
-CourseSearch.search('diversified_core=ah')
-CourseSearch.search('designated_theme=civ')
+CourseSearch.search(
+  SearchParameters.parse('writing_intensive=true')
+)
 ```
 
-Or this nicer syntax
+Or,
 
 ```ruby
-LiberalEducationCourse.where(writing_intensive: true)
-LiberalEducationCourse.where(diversified_core: 'AH')
-LiberalEducationCourse.where(designated_theme: 'civ')
+p = SearchParameter.new(:writing_intensive, 'WI')
+LiberalEducationCourse.where([p])
 ```
 
 Either of those will return a collection of 0 or more LiberalEducationCourse objects.
 
 ```ruby
-c = LiberalEducationCourse.where(writing_intensive: true).first
+c = CourseSearch.search(
+  SearchParameters.parse('writing_intensive=true')
+).first
 c.id #=> "807690"
 c.subject #=> "MATH"
 c.catalog_number #=> "4067W"
