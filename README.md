@@ -1,6 +1,6 @@
 # Liberal Education Courses
 
-Public endpoint for getting data about courses that satisfy one or more liberal education requirements
+Public endpoint for getting data about UMNTC courses that satisfy one or more liberal education requirements
 
 ## Querying on Liberal Education criteria
 
@@ -91,6 +91,7 @@ https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=easy_a
 
 - If a course is cross-listed under multiple subject/catalog numbers, then it will appear in the results multiple times.
 - Data comes from the Data Warehouse, so it is a day old.
+- UMNTC only
 
 ## Reference
 
