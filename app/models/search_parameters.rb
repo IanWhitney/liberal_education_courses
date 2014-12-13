@@ -13,7 +13,7 @@ class SearchParameters
         collection << MatcherBuilder.build(p)
       end
     else
-      collection << FindAll.new
+      collection << MatchAll.new
     end
   end
 

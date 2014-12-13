@@ -32,17 +32,17 @@ RSpec.describe MatchAttributeValue do
   end
 end
 
-RSpec.describe FindAll do
+RSpec.describe MatchAll do
   describe "all?" do
     it "is true" do
-      it = FindAll.new(:other, rand)
+      it = MatchAll.new(:other, rand)
       expect(it.all?).to be_truthy
     end
   end
 
   describe "match?" do
     it "is true" do
-      it = FindAll.new(:other, rand)
+      it = MatchAll.new(:other, rand)
       expect(it.match?(rand)).to be_truthy
     end
   end

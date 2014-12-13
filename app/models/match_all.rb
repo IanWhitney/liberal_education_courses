@@ -1,6 +1,6 @@
 require_relative "search_parameter"
 
-class FindAll < SearchParameter
+class MatchAll < SearchParameter
   def all?
     true
   end
