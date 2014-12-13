@@ -1,5 +1,4 @@
 require_relative "../../app/models/search_parameters"
-require_relative "../../app/models/query_parser"
 require_relative "../../app/models/search_parameter"
 
 RSpec.describe SearchParameters do
@@ -24,8 +23,8 @@ RSpec.describe SearchParameters do
           end
 
           it "have values that are uppercased strings" do
-            expect(single_element.collect(&:value)).to eq(["FILTER"])
-            expect(multi_element.collect(&:value)).to eq(%w(FILTER FILTER2))
+            expect(single_element.collect(&:value)).to eq(["filter"])
+            expect(multi_element.collect(&:value)).to eq(%w(filter filter2))
           end
         end
       end

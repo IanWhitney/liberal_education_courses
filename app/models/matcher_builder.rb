@@ -1,7 +1,14 @@
-class QueryParser
+class MatcherBuilder
+
+  attr_reader :search_param
+
   def self.parse(raw_query)
     x = new(raw_query)
-    { x.search_type => x.search_param }
+    if x.search_param == "true"
+      MatchAttribute.new(x.search_type)
+    else
+      MatchAttributeValue.new(x.search_type, x.search_param)
+    end
   end
 
   def initialize(raw_query)
@@ -12,14 +19,6 @@ class QueryParser
 
   def search_type
     @search_type ? @search_type.to_sym : nil
-  end
-
-  def search_param
-    if search_type == :writing_intensive
-      "WI"
-    else
-      @search_param.to_s.upcase
-    end
   end
 
   private

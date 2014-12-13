@@ -10,8 +10,7 @@ class SearchParameters
   def initialize(params)
     if params.any?
       params.each do |p|
-        search_params = QueryParser.parse(p)
-        collection <<  MatchAttribute.new(search_params.keys.first, search_params.values.first)
+        collection << MatcherBuilder.parse(p)
       end
     else
       collection << FindAll.new
