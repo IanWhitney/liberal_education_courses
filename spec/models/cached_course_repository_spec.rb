@@ -44,8 +44,8 @@ RSpec.describe CachedCourseRepository do
       course_three = Course.new("non_matching_subject", rand, rand, rand, "WI", rand, rand)
       CachedCourseRepository.add([course_one, course_two, course_three])
 
-      filter_one = MatchAttribute.new(:subject, "matching_subject")
-      filter_two = MatchAttribute.new(:diversified_core, "WI")
+      filter_one = MatchAttributeValue.new(:subject, "matching_subject")
+      filter_two = MatchAttributeValue.new(:diversified_core, "WI")
       results = CachedCourseRepository.search([filter_one, filter_two])
 
       expect(results).to include(course_one)
