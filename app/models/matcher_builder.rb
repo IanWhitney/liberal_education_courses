@@ -17,7 +17,7 @@ class MatcherBuilder
   end
 
   def initialize(raw_query)
-    self.search_type, self.search_param = raw_query.split("=")
+    self.search_type, self.search_param = raw_query.to_s.split("=")
   end
 
   def search_type
