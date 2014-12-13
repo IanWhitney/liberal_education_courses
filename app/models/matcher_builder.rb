@@ -6,6 +6,8 @@ class MatcherBuilder
     x = new(raw_query)
     if x.search_param == "true"
       MatchAttribute.new(x.search_type)
+    elsif x.search_param == "false"
+      MatchNoAttribute.new(x.search_type)
     else
       MatchAttributeValue.new(x.search_type, x.search_param)
     end
