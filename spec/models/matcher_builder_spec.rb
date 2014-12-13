@@ -14,6 +14,26 @@ RSpec.describe MatcherBuilder do
       end
     end
 
+    describe "reserved-word parameter provided" do
+      describe "parameter is all" do
+        it "returns a MatchAttribute" do
+          match_double = Object.new
+          expect(MatchAttribute).to receive(:new).with(:something).and_return(match_double)
+          it = MatcherBuilder.build("something=all")
+          expect(it).to eq(match_double)
+        end
+      end
+
+      describe "parameter is none" do
+        it "returns a MatchNoAttribute" do
+          match_double = Object.new
+          expect(MatchNoAttribute).to receive(:new).with(:something).and_return(match_double)
+          it = MatcherBuilder.build("something=none")
+          expect(it).to eq(match_double)
+        end
+      end
+    end
+
     describe "boolean parameter provided" do
       describe "parameter is true" do
         it "returns a MatchAttribute" do

@@ -4,9 +4,9 @@ class MatcherBuilder
   def self.build(raw_query = nil)
     if raw_query
       x = new(raw_query)
-      if x.search_param == "true"
+      if x.search_param == "true" || x.search_param == "all"
         MatchAttribute.new(x.search_type)
-      elsif x.search_param == "false"
+      elsif x.search_param == "false" || x.search_param == "none"
         MatchNoAttribute.new(x.search_type)
       else
         MatchAttributeValue.new(x.search_type, x.search_param)
