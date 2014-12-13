@@ -15,18 +15,4 @@ class SearchParameter
   end
 end
 
-class FindAll < SearchParameter
-  def all?
-    true
-  end
 
-  def match?(_)
-    true
-  end
-end
-
-class MatchAttribute < SearchParameter
-  def match?(target)
-    target.public_send(attribute) == value
-  end
-end
