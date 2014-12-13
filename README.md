@@ -12,6 +12,10 @@ https://apps.asr.umn.edu/liberal_education_courses/courses.json
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true
 
+or
+
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=false
+
 ### Get all courses that satisfy a designated theme
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=dsj
