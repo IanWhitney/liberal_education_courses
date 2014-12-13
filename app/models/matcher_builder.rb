@@ -1,5 +1,4 @@
 class MatcherBuilder
-
   attr_reader :search_param
 
   def self.parse(raw_query)
@@ -14,9 +13,7 @@ class MatcherBuilder
   end
 
   def initialize(raw_query)
-    if /\w+=\w/.match(raw_query)
-      self.search_type, self.search_param = raw_query.split("=")
-    end
+    self.search_type, self.search_param = raw_query.split("=")
   end
 
   def search_type

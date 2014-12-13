@@ -14,5 +14,3 @@ class SearchParameter
     false
   end
 end
-
-
