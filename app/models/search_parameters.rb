@@ -11,7 +11,7 @@ class SearchParameters
     if params.any?
       params.each do |p|
         search_params = QueryParser.parse(p)
-        collection <<  SearchParameter.new(search_params.keys.first, search_params.values.first)
+        collection <<  MatchAttribute.new(search_params.keys.first, search_params.values.first)
       end
     else
       collection << FindAll.new

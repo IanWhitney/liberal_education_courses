@@ -10,8 +10,8 @@ class SearchParameter
     false
   end
 
-  def match?(target)
-    target.public_send(attribute) == value
+  def match?(_)
+    false
   end
 end
 
@@ -22,5 +22,11 @@ class FindAll < SearchParameter
 
   def match?(_)
     true
+  end
+end
+
+class MatchAttribute < SearchParameter
+  def match?(target)
+    target.public_send(attribute) == value
   end
 end

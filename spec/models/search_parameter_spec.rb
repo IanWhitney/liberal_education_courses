@@ -1,10 +1,10 @@
 require "ostruct"
 require_relative "../../app/models/search_parameter"
 
-RSpec.describe SearchParameter do
+RSpec.describe MatchAttribute do
   describe "all?" do
     it "is false" do
-      it = SearchParameter.new(:other, rand)
+      it = MatchAttribute.new(:other, rand)
       expect(it.all?).to be_falsey
     end
   end
@@ -13,7 +13,7 @@ RSpec.describe SearchParameter do
     describe "given a target with an attribute that matches the Parameter's attribute" do
       let(:target) { OpenStruct.new(search_attr: "search_value") }
       let(:value) { "search_value" }
-      let(:subject) { SearchParameter.new(:search_attr, value) }
+      let(:subject) { MatchAttribute.new(:search_attr, value) }
 
       it "returns true" do
         expect(subject.match?(target)).to be_truthy
@@ -23,7 +23,7 @@ RSpec.describe SearchParameter do
     describe "given a target with an attribute that does not match the Parameter's attribute" do
       let(:target) { OpenStruct.new(search_attr: "other_value") }
       let(:value) { "search_value" }
-      let(:subject) { SearchParameter.new(:search_attr, value) }
+      let(:subject) { MatchAttribute.new(:search_attr, value) }
 
       it "returns true" do
         expect(subject.match?(target)).to be_falsey
