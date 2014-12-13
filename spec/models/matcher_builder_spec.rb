@@ -6,6 +6,12 @@ require_relative "../../app/models/match_attribute_value"
 RSpec.describe MatcherBuilder do
   describe "build" do
     describe "no parameters provided" do
+      it "returns a MatchAll" do
+        match_double = Object.new
+        expect(MatchAll).to receive(:new).and_return(match_double)
+        it = MatcherBuilder.build
+        expect(it).to eq(match_double)
+      end
     end
 
     describe "boolean parameter provided" do
