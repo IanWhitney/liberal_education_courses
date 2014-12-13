@@ -31,7 +31,7 @@ class CachedCourseRepository
 
   def self.search_results(search_parameters)
     result_sets = search_parameters.each_with_object([]) do |param, ret|
-      ret << (collection.select { |c| c.public_send(param.attribute) == param.value }).to_set
+      ret << (collection.select { |c| param.match?(c) }).to_set
     end
     result_sets.inject(:intersection).to_a
   end
