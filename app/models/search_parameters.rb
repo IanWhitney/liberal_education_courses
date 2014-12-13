@@ -10,7 +10,7 @@ class SearchParameters
   def initialize(params)
     if params.any?
       params.each do |p|
-        collection << MatcherBuilder.parse(p)
+        collection << MatcherBuilder.build(p)
       end
     else
       collection << FindAll.new

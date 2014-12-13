@@ -1,7 +1,7 @@
 class MatcherBuilder
   attr_reader :search_param
 
-  def self.parse(raw_query)
+  def self.build(raw_query)
     x = new(raw_query)
     if x.search_param == "true"
       MatchAttribute.new(x.search_type)
