@@ -29,19 +29,6 @@ RSpec.describe SearchParameters do
           end
         end
       end
-
-      it "returns false to all?" do
-        [single_element, multi_element].each do |it|
-          expect(it.all?).to be_falsey
-        end
-      end
-    end
-
-    describe "without a query_string" do
-      let(:no_element) { SearchParameters.parse(nil) }
-      it "returns true to all?" do
-        expect(no_element.all?).to be_truthy
-      end
     end
   end
 end

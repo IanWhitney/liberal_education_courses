@@ -3,16 +3,9 @@ require_relative "../../app/models/search_parameter"
 
 RSpec.describe SearchParameter do
   describe "all?" do
-    it "is all if the attribute is :all" do
-      it = SearchParameter.new(:all, rand)
-      expect(it.all?).to be_truthy
-      expect(it.attribute).to eq(:all)
-    end
-
-    it "is not all if the attribute is not :all" do
+    it "is false" do
       it = SearchParameter.new(:other, rand)
       expect(it.all?).to be_falsey
-      expect(it.attribute).to eq(:other)
     end
   end
 
@@ -35,6 +28,22 @@ RSpec.describe SearchParameter do
       it "returns true" do
         expect(subject.match?(target)).to be_falsey
       end
+    end
+  end
+end
+
+RSpec.describe FindAll do
+  describe "all?" do
+    it "is true" do
+      it = FindAll.new(:other, rand)
+      expect(it.all?).to be_truthy
+    end
+  end
+
+  describe "match?" do
+    it "is true" do
+      it = FindAll.new(:other, rand)
+      expect(it.match?(rand)).to be_truthy
     end
   end
 end

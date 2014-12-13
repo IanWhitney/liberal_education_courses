@@ -7,10 +7,6 @@ class SearchParameters
     new(params.to_s.split(","))
   end
 
-  def all?
-    collection.any?(&:all?)
-  end
-
   def initialize(params)
     if params.any?
       params.each do |p|
@@ -18,7 +14,7 @@ class SearchParameters
         collection <<  SearchParameter.new(search_params.keys.first, search_params.values.first)
       end
     else
-      collection << SearchParameter.new(:all, nil)
+      collection << FindAll.new
     end
   end
 

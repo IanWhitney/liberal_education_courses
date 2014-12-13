@@ -19,14 +19,6 @@ RSpec.describe QueryParser do
       end
     end
 
-    describe "without an unparsed query" do
-      it "defaults to search all" do
-        it = QueryParser.new(nil)
-        expect(it.search_type).to eq(:all)
-        expect(it.search_param).to be_empty
-      end
-    end
-
     describe "without a writing intensive query" do
       it "converts the search_param to WI" do
         it = QueryParser.new("writing_intensive=#{rand}")

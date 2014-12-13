@@ -1,6 +1,6 @@
 class CachedCourseRepository
   def self.empty?
-    all.nil?
+    collection.nil?
   end
 
   def self.add(courses)
