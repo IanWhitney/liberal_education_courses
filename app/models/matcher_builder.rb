@@ -2,17 +2,17 @@ class MatcherBuilder
   attr_reader :search_param
 
   def self.build(raw_query = nil)
-    if raw_query
-      x = new(raw_query)
-      if x.search_param == "true" || x.search_param == "all"
-        MatchAttribute.new(x.search_type)
-      elsif x.search_param == "false" || x.search_param == "none"
-        MatchNoAttribute.new(x.search_type)
-      else
-        MatchAttributeValue.new(x.search_type, x.search_param)
-      end
-    else
+    x = new(raw_query)
+    if x.match_all?
       MatchAll.new
+    elsif x.match_attribute_exists?
+      MatchAttribute.new(x.search_type)
+    elsif x.match_atttribute_not_exist?
+      MatchNoAttribute.new(x.search_type)
+    elsif x.match_attribute_value?
+      MatchAttributeValue.new(x.search_type, x.search_param)
+    else
+      SearchParameter.new(x.search_type, x.search_param)
     end
   end
 
@@ -22,6 +22,22 @@ class MatcherBuilder
 
   def search_type
     @search_type ? @search_type.to_sym : nil
+  end
+
+  def match_all?
+    search_type.nil? && search_param.nil?
+  end
+
+  def match_attribute_exists?
+    search_param == "true" || search_param == "all"
+  end
+
+  def match_atttribute_not_exist?
+    search_param == "false" || search_param == "none"
+  end
+
+  def match_attribute_value?
+    search_param && search_param && !match_attribute_exists? && !match_atttribute_not_exist?
   end
 
   private
