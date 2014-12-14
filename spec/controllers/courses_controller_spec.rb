@@ -3,6 +3,12 @@ require "rails_helper"
 RSpec.describe CoursesController do
   describe "GET index" do
     it "won't respond to a html request" do
+      course_double = [rand]
+      parameters_double = double("SearchParameters")
+
+      expect(SearchParameters).to receive(:parse).with(nil).and_return(parameters_double)
+      expect(CourseSearch).to receive(:search).with(parameters_double, LiberalEducationCourse).and_return(course_double)
+
       get :index, format: :html
       expect(response).to have_http_status(400)
     end
