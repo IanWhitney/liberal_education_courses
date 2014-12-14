@@ -1,5 +1,5 @@
 require_relative "../../app/models/matcher_builder"
-require_relative "../../app/models/match_attribute"
+require_relative "../../app/models/matchers/match_attribute"
 require_relative "../../app/models/search_parameter"
 require_relative "../../app/models/query_options"
 

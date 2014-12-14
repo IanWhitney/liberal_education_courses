@@ -1,4 +1,4 @@
-require_relative "search_parameter"
+require_relative "../search_parameter"
 
 class MatchAttribute < SearchParameter
   def match?(target)
