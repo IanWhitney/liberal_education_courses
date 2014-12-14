@@ -1,21 +1,12 @@
 class MatcherBuilder
   attr_reader :search_param
 
-  def self.build(raw_query = nil)
-    parsed = new(raw_query)
-    constructor = SearchParameter.matchers.detect { |m| m.build_me?(parsed.search_type, parsed.search_param) }
+  def self.build(query_option)
+    constructor = SearchParameter.matchers.detect { |m| m.build_me?(query_option.search_type, query_option.search_param) }
 
     if constructor
-      constructor.new(parsed.search_type, parsed.search_param)
+      constructor.new(query_option.search_type, query_option.search_param)
     end
-  end
-
-  def initialize(raw_query)
-    self.search_type, self.search_param = raw_query.to_s.split("=")
-  end
-
-  def search_type
-    @search_type ? @search_type.to_sym : nil
   end
 
   private

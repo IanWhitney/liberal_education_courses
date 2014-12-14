@@ -4,7 +4,7 @@ class SearchParameters
   def_delegators :@collection, :[], :any?, :each_with_object, :each, :collect
 
   def self.parse(params)
-    new(params.to_s.split(","))
+    new(QueryOptions.parse(params))
   end
 
   def initialize(params)
