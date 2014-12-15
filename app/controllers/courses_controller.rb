@@ -21,7 +21,7 @@ class CoursesController < ApplicationController
   def index
     search_parameters = SearchParameters.parse(params[:q])
 
-    @courses = CourseSearch.search(search_parameters, LiberalEducationCourse)
+    @courses = LiberalEducationCourse.where(search_parameters)
 
     respond_with(@courses) do |format|
       format.json { render }
