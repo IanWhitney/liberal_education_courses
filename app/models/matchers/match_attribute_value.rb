@@ -6,6 +6,6 @@ class MatchAttributeValue < AbstractMatcher
   end
 
   def self.build_me?(search_type, search_param)
-    search_param && search_type
+    search_param && search_type && !all_reserved_words.include?(search_param)
   end
 end

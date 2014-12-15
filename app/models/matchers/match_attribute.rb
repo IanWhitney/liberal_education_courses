@@ -5,7 +5,11 @@ class MatchAttribute < AbstractMatcher
     !target.public_send(attribute).nil?
   end
 
+  def self.reserved_words
+    %w(true all)
+  end
+
   def self.build_me?(_, search_param)
-    search_param == "true" || search_param == "all"
+    reserved_words.include?(search_param)
   end
 end

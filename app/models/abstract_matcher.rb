@@ -2,8 +2,15 @@ class AbstractMatcher
   attr_accessor :attribute, :value
 
   def self.matchers
-    # Be careful with the order of this array. git blame for more info.
-    [MatchAll, MatchAttribute, MatchNoAttribute, MatchAttributeValue, self]
+    descendants.push(self)
+  end
+
+  def self.descendants
+    ObjectSpace.each_object(Class).select { |klass| klass < AbstractMatcher }
+  end
+
+  def self.all_reserved_words
+    descendants.each_with_object([]) { |d, ret| ret << d.reserved_words }.flatten
   end
 
   def initialize(attribute = nil, value = nil)
@@ -19,7 +26,13 @@ class AbstractMatcher
     false
   end
 
+  def self.reserved_words
+    []
+  end
+
   def self.build_me?(_, _)
     true
   end
 end
+
+Dir.glob(File.join(File.dirname(__FILE__), "matchers", "*.rb")) { |file| require file }
