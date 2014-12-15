@@ -1,9 +1,9 @@
-require_relative "../../app/models/matcher_builder"
+require_relative "../../app/models/matcher_factory"
 require_relative "../../app/models/matchers/match_attribute"
 require_relative "../../app/models/search_parameter"
 require_relative "../../app/models/query_options"
 
-RSpec.describe MatcherBuilder do
+RSpec.describe MatcherFactory do
   let(:matcher_double) { class_double("MatchAttribute") }
   let(:param_double) { double("QueryOptions") }
 
@@ -19,14 +19,14 @@ RSpec.describe MatcherBuilder do
         test_return = Object.new
         expect(matcher_double).to receive(:build_me?).with(param_double.search_type, param_double.search_param).and_return(true)
         expect(matcher_double).to receive(:new).with(param_double.search_type, param_double.search_param).and_return(test_return)
-        expect(MatcherBuilder.build(param_double)).to eq(test_return)
+        expect(MatcherFactory.build(param_double)).to eq(test_return)
       end
     end
 
     describe "does not find a matcher to build" do
       it "returns nil" do
         expect(matcher_double).to receive(:build_me?).and_return(false)
-        expect(MatcherBuilder.build(param_double)).to be_nil
+        expect(MatcherFactory.build(param_double)).to be_nil
       end
     end
   end

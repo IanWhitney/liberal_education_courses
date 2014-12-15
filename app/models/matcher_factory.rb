@@ -1,4 +1,4 @@
-class MatcherBuilder
+class MatcherFactory
   attr_reader :search_param
 
   def self.build(query_option)
