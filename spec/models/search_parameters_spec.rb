@@ -1,5 +1,5 @@
 require_relative "../../app/models/search_parameters"
-require_relative "../../app/models/search_parameter"
+require_relative "../../app/models/abstract_matcher"
 
 RSpec.describe SearchParameters do
   describe "parse" do

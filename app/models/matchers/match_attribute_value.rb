@@ -1,6 +1,6 @@
-require_relative "../search_parameter"
+require_relative "../abstract_matcher"
 
-class MatchAttributeValue < SearchParameter
+class MatchAttributeValue < AbstractMatcher
   def match?(target)
     target.public_send(attribute).to_s.upcase == value.to_s.upcase
   end

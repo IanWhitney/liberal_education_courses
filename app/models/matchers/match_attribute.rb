@@ -1,6 +1,6 @@
-require_relative "../search_parameter"
+require_relative "../abstract_matcher"
 
-class MatchAttribute < SearchParameter
+class MatchAttribute < AbstractMatcher
   def match?(target)
     !target.public_send(attribute).nil?
   end

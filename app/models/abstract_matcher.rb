@@ -1,4 +1,4 @@
-class SearchParameter
+class AbstractMatcher
   attr_accessor :attribute, :value
 
   def self.matchers

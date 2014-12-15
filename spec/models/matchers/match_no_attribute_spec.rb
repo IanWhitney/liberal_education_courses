@@ -1,5 +1,5 @@
 require "ostruct"
-require_relative "../../../app/models/search_parameter"
+require_relative "../../../app/models/abstract_matcher"
 require_relative "../../../app/models/matchers/match_no_attribute"
 
 RSpec.describe MatchNoAttribute do

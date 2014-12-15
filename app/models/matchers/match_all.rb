@@ -1,6 +1,6 @@
-require_relative "../search_parameter"
+require_relative "../abstract_matcher"
 
-class MatchAll < SearchParameter
+class MatchAll < AbstractMatcher
   def all?
     true
   end
