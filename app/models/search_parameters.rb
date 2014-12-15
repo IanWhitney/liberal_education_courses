@@ -10,10 +10,10 @@ class SearchParameters
   def initialize(params)
     if params.any?
       params.each do |p|
-        collection << MatcherFactory.build(p)
+        collection << MatcherFactory.build(p, SearchParameter.matchers)
       end
     else
-      collection << MatcherFactory.build(nil)
+      collection << MatcherFactory.build(nil, SearchParameter.matchers)
     end
   end
 
