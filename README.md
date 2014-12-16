@@ -8,17 +8,34 @@ Public endpoint for getting data about UMNTC courses that satisfy one or more li
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json
 
-### Get all courses that satisfy Writing Intensive
+### Get all courses with writing_intensive, designated_theme or diversified_core
 
-https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=all
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=all
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=all
 
-### Get all courses that satisfy a designated theme
+`all` and `true` are synonymous. So these could be written as:
 
-https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=dsj
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=true
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=true
 
-### Get all courses that satisfy a specific diversified core
+### Get all courses without writing_intensive, designated_theme or diversified_core
 
-https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=ah
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=none
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=none
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=none
+
+`none` and `false` are synonymous. So these could be written as:
+
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=false
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=false
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=false
+
+### Get all courses that satisfy a specific designated theme or diversified_core
+
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=dsj
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=ah
 
 ## Querying on Subject
 
@@ -45,6 +62,10 @@ https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intens
 
 Will return courses that are writing intensive and that have the American History diversified_core
 
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=all%2Cdiversified_core=ah
+
+Will return courses that meet any designated_theme and that have the American History diversified_core
+
 ## Return Values
 
 Only returns JSON. Limited course data
@@ -58,7 +79,7 @@ Only returns JSON. Limited course data
     "title": "Actuarial Mathematics in Practice",
     "diversified_core": null,
     "designated_theme": null,
-    "writing_intensive": true
+    "writing_intensive": "WI"
   }
 ```
 
@@ -71,7 +92,7 @@ Only returns JSON. Limited course data
     "title": "Administrative Law and Regulation for Strategic Communication",
     "diversified_core": null,
     "designated_theme": "CIV",
-    "writing_intensive": false
+    "writing_intensive": "WI"
   }]
 }
 

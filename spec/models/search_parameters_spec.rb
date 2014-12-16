@@ -1,6 +1,5 @@
 require_relative "../../app/models/search_parameters"
-require_relative "../../app/models/query_parser"
-require_relative "../../app/models/search_parameter"
+require_relative "../../app/models/abstract_matcher"
 
 RSpec.describe SearchParameters do
   describe "parse" do
@@ -24,23 +23,10 @@ RSpec.describe SearchParameters do
           end
 
           it "have values that are uppercased strings" do
-            expect(single_element.collect(&:value)).to eq(["FILTER"])
-            expect(multi_element.collect(&:value)).to eq(%w(FILTER FILTER2))
+            expect(single_element.collect(&:value)).to eq(["filter"])
+            expect(multi_element.collect(&:value)).to eq(%w(filter filter2))
           end
         end
-      end
-
-      it "returns false to all?" do
-        [single_element, multi_element].each do |it|
-          expect(it.all?).to be_falsey
-        end
-      end
-    end
-
-    describe "without a query_string" do
-      let(:no_element) { SearchParameters.parse(nil) }
-      it "returns true to all?" do
-        expect(no_element.all?).to be_truthy
       end
     end
   end

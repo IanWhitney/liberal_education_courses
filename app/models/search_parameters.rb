@@ -4,21 +4,16 @@ class SearchParameters
   def_delegators :@collection, :[], :any?, :each_with_object, :each, :collect
 
   def self.parse(params)
-    new(params.to_s.split(","))
-  end
-
-  def all?
-    collection.any?(&:all?)
+    new(QueryOptions.parse(params))
   end
 
   def initialize(params)
     if params.any?
       params.each do |p|
-        search_params = QueryParser.parse(p)
-        collection <<  SearchParameter.new(search_params.keys.first, search_params.values.first)
+        collection << MatcherFactory.build(p, AbstractMatcher.matchers)
       end
     else
-      collection << SearchParameter.new(:all, nil)
+      collection << MatcherFactory.build(nil, AbstractMatcher.matchers)
     end
   end
 
