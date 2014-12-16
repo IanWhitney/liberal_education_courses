@@ -13,10 +13,6 @@ class CachedCourseRepository
     collection
   end
 
-  def self.search(search_parameters)
-    ParameterSearch.search(collection, search_parameters)
-  end
-
   def self.clear
     Rails.cache.clear
   end
