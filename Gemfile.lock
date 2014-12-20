@@ -1,8 +1,8 @@
 GIT
   remote: git@github.umn.edu:asrweb/api_service_searching.git
-  revision: e07a4212f97353e8f244aca32cde1921b021c5be
+  revision: 574aef7e5425b08b6df3946e3e07408f21ecf889
   specs:
-    api_service_searching (0.0.1)
+    api_service_searching (0.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -178,7 +178,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-oracle_enhanced-adapter (~> 1.5.0)
-  api_service_searching (~> 0.0.1)!
+  api_service_searching (~> 0.0.2)!
   brakeman
   capistrano (~> 3.1)
   capistrano-rails (~> 1.1)

@@ -6,7 +6,7 @@ ruby "2.1.5"
 gem "rails", "4.1.8"
 gem "ruby-oci8", "~> 2.1.0"
 gem "activerecord-oracle_enhanced-adapter", "~> 1.5.0"
-gem "api_service_searching", "~> 0.0.1", git: "git@github.umn.edu:asrweb/api_service_searching.git"
+gem "api_service_searching", "~> 0.0.2", git: "git@github.umn.edu:asrweb/api_service_searching.git"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.0"
