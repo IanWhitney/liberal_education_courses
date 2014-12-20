@@ -7,7 +7,6 @@ end
 RSpec.describe CoursesController do
   describe "GET index" do
     it "won't respond to a html request" do
-
       allow(LiberalEducationCourse).to receive(:all).and_return([])
 
       get :index, format: :html
