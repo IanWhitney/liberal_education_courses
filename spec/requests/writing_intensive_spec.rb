@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Client requests courses:" do
   describe "With writing intensive" do
     it "returns json with courses collection" do
-      get "courses.json?q=writing_intensive=true"
+      get "/courses.json?q=writing_intensive=true"
       parsed_response = JSON.parse(response.body)
       expect(parsed_response.keys).to include("courses")
       random_course = parsed_response["courses"].sample
@@ -21,7 +21,7 @@ RSpec.describe "Client requests courses:" do
 
   describe "Without writing intensive" do
     it "returns json with courses collection" do
-      get "courses.json?q=writing_intensive=false"
+      get "/courses.json?q=writing_intensive=false"
       parsed_response = JSON.parse(response.body)
       expect(parsed_response.keys).to include("courses")
       random_course = parsed_response["courses"].sample

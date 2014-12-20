@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Client requests courses:" do
   describe "With 'designated_theme=none'" do
     it "returns only courses without a designated_theme" do
-      get "courses.json?q=designated_theme=none"
+      get "/courses.json?q=designated_theme=none"
       parsed_response = JSON.parse(response.body)
       expect(parsed_response.keys).to include("courses")
       random_course = parsed_response["courses"].sample
