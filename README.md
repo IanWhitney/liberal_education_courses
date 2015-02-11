@@ -8,7 +8,7 @@ Public endpoint for getting data about UMNTC courses that satisfy one or more li
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json
 
-### Get all courses with writing_intensive, designated_theme or diversified_core
+### Get all courses with writing_intensive, designated_theme or diversified core
 
 - https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=all
 - https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=all
@@ -20,7 +20,7 @@ https://apps.asr.umn.edu/liberal_education_courses/courses.json
 - https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=true
 - https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=true
 
-### Get all courses without writing_intensive, designated_theme or diversified_core
+### Get all courses without writing_intensive, designated_theme or diversified core
 
 - https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=none
 - https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=none
@@ -32,16 +32,25 @@ https://apps.asr.umn.edu/liberal_education_courses/courses.json
 - https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=false
 - https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=false
 
-### Get all courses that satisfy a specific designated theme or diversified_core
+### Get all courses that satisfy a specific designated theme or diversified core
 
 - https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=dsj
 - https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=ah
+
+### Get all courses that satisfy one or more designated theme or diversified core
+
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=dsj|gp
+- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=ah|his|socs
 
 ## Querying on Subject
 
 ### Get all Liberal Education courses taught in JOUR
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=subject=JOUR
+
+### Get all Liberal Education courses taught in JOUR or Asian American Studies
+
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=subject=JOUR|AAS
 
 ## Querying on Other Attributes
 
@@ -60,11 +69,15 @@ Will return courses that are writing intensive and that have the subject of JOUR
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true%2Cdiversified_core=ah
 
-Will return courses that are writing intensive and that have the American History diversified_core
+Will return courses that are writing intensive and that have the American History diversified core
 
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=all%2Cdiversified_core=ah
 
-Will return courses that meet any designated_theme and that have the American History diversified_core
+Will return courses that meet any designated_theme and that have the American History diversified core
+
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=all%2Cdiversified_core=ah|litr
+
+Will return courses that meet any designated_theme and that have either the American History or Literature diversified core
 
 ## Return Values
 
