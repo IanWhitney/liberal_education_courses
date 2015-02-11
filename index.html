@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Liberal education courses by umn-asr</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Liberal education courses</h1>
+        <p class="header">Public endpoint for getting data about UMNTC courses that satisfy one or more liberal education requirements</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/umn-asr/liberal_education_courses/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/umn-asr/liberal_education_courses/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/umn-asr/liberal_education_courses">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/umn-asr">umn-asr</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a id="liberal-education-courses" class="anchor" href="#liberal-education-courses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Liberal Education Courses</h1>
+
+<p>Public endpoint for getting data about UMNTC courses that satisfy one or more liberal education requirements</p>
+
+<h2>
+<a id="querying-on-liberal-education-criteria" class="anchor" href="#querying-on-liberal-education-criteria" aria-hidden="true"><span class="octicon octicon-link"></span></a>Querying on Liberal Education criteria</h2>
+
+<p>Full details on how you can use the query string to filter your results can be found at the <a href="https://github.com/umn-asr/query_string_search">Query String Search page</a></p>
+
+<h3>
+<a id="get-all-courses" class="anchor" href="#get-all-courses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get all courses</h3>
+
+<p><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json">https://apps.asr.umn.edu/liberal_education_courses/courses.json</a></p>
+
+<h3>
+<a id="get-all-courses-with-writing_intensive-designated_theme-or-diversified-core" class="anchor" href="#get-all-courses-with-writing_intensive-designated_theme-or-diversified-core" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get all courses with writing_intensive, designated_theme or diversified core</h3>
+
+<ul>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=all">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=all</a></li>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=all">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=all</a></li>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=all">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=all</a></li>
+</ul>
+
+<p><code>all</code> and <code>true</code> are synonymous. So these could be written as:</p>
+
+<ul>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true</a></li>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=true">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=true</a></li>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=true">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=true</a></li>
+</ul>
+
+<h3>
+<a id="get-all-courses-without-writing_intensive-designated_theme-or-diversified-core" class="anchor" href="#get-all-courses-without-writing_intensive-designated_theme-or-diversified-core" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get all courses without writing_intensive, designated_theme or diversified core</h3>
+
+<ul>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=none">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=none</a></li>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=none">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=none</a></li>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=none">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=none</a></li>
+</ul>
+
+<p><code>none</code> and <code>false</code> are synonymous. So these could be written as:</p>
+
+<ul>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=false">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=false</a></li>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=false">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=false</a></li>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=false">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=false</a></li>
+</ul>
+
+<h3>
+<a id="get-all-courses-that-satisfy-a-specific-designated-theme-or-diversified-core" class="anchor" href="#get-all-courses-that-satisfy-a-specific-designated-theme-or-diversified-core" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get all courses that satisfy a specific designated theme or diversified core</h3>
+
+<ul>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=dsj">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=dsj</a></li>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=ah">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=ah</a></li>
+</ul>
+
+<h3>
+<a id="get-all-courses-that-satisfy-one-or-more-designated-theme-or-diversified-core" class="anchor" href="#get-all-courses-that-satisfy-one-or-more-designated-theme-or-diversified-core" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get all courses that satisfy one or more designated theme or diversified core</h3>
+
+<ul>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=dsj%7Cgp">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=dsj|gp</a></li>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=ah%7Chis%7Csocs">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=ah|his|socs</a></li>
+</ul>
+
+<h2>
+<a id="querying-on-subject" class="anchor" href="#querying-on-subject" aria-hidden="true"><span class="octicon octicon-link"></span></a>Querying on Subject</h2>
+
+<h3>
+<a id="get-all-liberal-education-courses-taught-in-jour" class="anchor" href="#get-all-liberal-education-courses-taught-in-jour" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get all Liberal Education courses taught in JOUR</h3>
+
+<p><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=subject=JOUR">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=subject=JOUR</a></p>
+
+<h3>
+<a id="get-all-liberal-education-courses-taught-in-jour-or-asian-american-studies" class="anchor" href="#get-all-liberal-education-courses-taught-in-jour-or-asian-american-studies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get all Liberal Education courses taught in JOUR or Asian American Studies</h3>
+
+<p><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=subject=JOUR%7CAAS">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=subject=JOUR|AAS</a></p>
+
+<h2>
+<a id="querying-on-other-attributes" class="anchor" href="#querying-on-other-attributes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Querying on Other Attributes</h2>
+
+<p>You can search based on any attribute returned in the JSON except for title. All of the below will work, but they won't return many courses.</p>
+
+<ul>
+<li><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=course_id=807690">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=course_id=807690</a></li>
+<li><a href="https://apps.asr.umn.edu/courses.json?q=subject=math,catalog_number=4067W">https://apps.asr.umn.edu/courses.json?q=subject=math,catalog_number=4067W</a></li>
+</ul>
+
+<h2>
+<a id="querying-on-more-than-one-attribute" class="anchor" href="#querying-on-more-than-one-attribute" aria-hidden="true"><span class="octicon octicon-link"></span></a>Querying on More Than One Attribute</h2>
+
+<p>Separate attributes with a comma. Courses that match all providided attributes will be returned.</p>
+
+<p><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true%2Csubject=JOUR">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true%2Csubject=JOUR</a></p>
+
+<p>Will return courses that are writing intensive and that have the subject of JOUR</p>
+
+<p><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true%2Cdiversified_core=ah">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true%2Cdiversified_core=ah</a></p>
+
+<p>Will return courses that are writing intensive and that have the American History diversified core</p>
+
+<p><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=all%2Cdiversified_core=ah">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=all%2Cdiversified_core=ah</a></p>
+
+<p>Will return courses that meet any designated_theme and that have the American History diversified core</p>
+
+<p><a href="https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=all%2Cdiversified_core=ah%7Clitr">https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=all%2Cdiversified_core=ah|litr</a></p>
+
+<p>Will return courses that meet any designated_theme and that have either the American History or Literature diversified core</p>
+
+<h2>
+<a id="return-values" class="anchor" href="#return-values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Return Values</h2>
+
+<p>Only returns JSON. Limited course data</p>
+
+<div class="highlight highlight-json"><pre>{
+  <span class="pl-s1"><span class="pl-pds">"</span>courses<span class="pl-pds">"</span></span>: [{
+    <span class="pl-s1"><span class="pl-pds">"</span>course_id<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>807690<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>subject<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>MATH<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>catalog_number<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>4067W<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>Actuarial Mathematics in Practice<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>diversified_core<span class="pl-pds">"</span></span>: <span class="pl-c1">null</span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>designated_theme<span class="pl-pds">"</span></span>: <span class="pl-c1">null</span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>writing_intensive<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>WI<span class="pl-pds">"</span></span>
+  }</pre></div>
+
+<div class="highlight highlight-json"><pre>{
+  <span class="pl-s1"><span class="pl-pds">"</span>courses<span class="pl-pds">"</span></span>: [{
+    <span class="pl-s1"><span class="pl-pds">"</span>course_id<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>808233<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>subject<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>JOUR<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>catalog_number<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>3775<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>Administrative Law and Regulation for Strategic Communication<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>diversified_core<span class="pl-pds">"</span></span>: <span class="pl-c1">null</span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>designated_theme<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>CIV<span class="pl-pds">"</span></span>,
+    <span class="pl-s1"><span class="pl-pds">"</span>writing_intensive<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>WI<span class="pl-pds">"</span></span>
+  }]
+}
+</pre></div>
+
+<p>An empty courses collection will be returned if no courses match your criteria</p>
+
+<pre><code>https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=basketweaving
+#=&gt; {"courses": []}
+
+https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=easy_a
+#=&gt; {"courses": []}
+</code></pre>
+
+<h2>
+<a id="limits" class="anchor" href="#limits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limits</h2>
+
+<ul>
+<li>If a course is cross-listed under multiple subject/catalog numbers, then it will appear in the results multiple times.</li>
+<li>Data comes from the Data Warehouse, so it is a day old.</li>
+<li>UMNTC only</li>
+</ul>
+
+<h2>
+<a id="reference" class="anchor" href="#reference" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reference</h2>
+
+<p>You can pass these in all caps, all lower-case, mixed caps, etc. But they will be all caps in the returned json</p>
+
+<h3>
+<a id="ids-for-diversified-cores" class="anchor" href="#ids-for-diversified-cores" aria-hidden="true"><span class="octicon octicon-link"></span></a>IDs for Diversified Cores</h3>
+
+<ul>
+<li>Ah: Arts &amp; Humanities</li>
+<li>Biol: Biological Sciences</li>
+<li>His: Historical Perspectives</li>
+<li>Litr: Literature</li>
+<li>Math: Mathematical Thinking</li>
+<li>Phys: Physical Sciences</li>
+<li>Socs: Social Sciences</li>
+</ul>
+
+<h3>
+<a id="ids-for-designated-theme" class="anchor" href="#ids-for-designated-theme" aria-hidden="true"><span class="octicon octicon-link"></span></a>IDs for Designated Theme</h3>
+
+<ul>
+<li>Gp: Global Perspectives</li>
+<li>Ts: Technology and Society</li>
+<li>Civ: Civic Life and Ethics</li>
+<li>Dsj: Diversity and Social Justice in the U.S.</li>
+<li>Env: The Environment</li>
+</ul>
+
+<h2>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development</h2>
+
+<h3>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h3>
+
+<ul>
+<li>Clone repo</li>
+<li><code>bundle install --path ./vendor/bundle</code></li>
+<li>Copy the database.yml file from app_configurations <code>rails/liberal_education_service/config</code> into <code>./config</code>
+</li>
+<li><code>bundle exec rails s</code></li>
+</ul>
+
+<h3>
+<a id="console-interaction" class="anchor" href="#console-interaction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Console Interaction</h3>
+
+<p>You can work at higher level:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="pl-s3">CourseSearch</span>.search(
+  <span class="pl-s3">SearchParameters</span>.parse(<span class="pl-s1"><span class="pl-pds">'</span>writing_intensive=true<span class="pl-pds">'</span></span>)
+)</pre></div>
+
+<p>Or,</p>
+
+<div class="highlight highlight-ruby"><pre>p <span class="pl-k">=</span> <span class="pl-s3">SearchParameter</span>.<span class="pl-k">new</span>(<span class="pl-c1">:writing_intensive</span>, <span class="pl-s1"><span class="pl-pds">'</span>WI<span class="pl-pds">'</span></span>)
+<span class="pl-s3">LiberalEducationCourse</span>.where([p])</pre></div>
+
+<p>Either of those will return a collection of 0 or more LiberalEducationCourse objects.</p>
+
+<div class="highlight highlight-ruby"><pre>c <span class="pl-k">=</span> <span class="pl-s3">CourseSearch</span>.search(
+  <span class="pl-s3">SearchParameters</span>.parse(<span class="pl-s1"><span class="pl-pds">'</span>writing_intensive=true<span class="pl-pds">'</span></span>)
+).first
+c.id <span class="pl-c">#=&gt; "807690"</span>
+c.subject <span class="pl-c">#=&gt; "MATH"</span>
+c.catalog_number <span class="pl-c">#=&gt; "4067W"</span>
+c.title <span class="pl-c">#=&gt; "Actuarial Mathematics in Practice"</span>
+c.diversified_core <span class="pl-c">#=&gt; nil</span>
+c.designated_theme <span class="pl-c">#=&gt; nil</span>
+c.writing_intensive <span class="pl-c">#=&gt; true</span></pre></div>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
