@@ -19,10 +19,10 @@ class CoursesController < ApplicationController
   respond_to :json
 
   def index
-    @courses = ApiServiceSearching.where(
+    @courses = QueryStringSearch.new(
       LiberalEducationCourse.all,
       params[:q]
-    )
+    ).results
 
     respond_with(@courses) do |format|
       format.json { render }
