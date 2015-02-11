@@ -2,7 +2,7 @@
 lock "3.2.1"
 
 set :application, "liberal_education_courses"
-set :repo_url, "git@github.umn.edu:whit0694/liberal_education_courses.git"
+set :repo_url, "https://github.com/umn-asr/liberal_education_courses.git"
 
 # Default branch is :master
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
