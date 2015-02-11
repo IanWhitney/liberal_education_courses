@@ -214,47 +214,6 @@ https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=easy_a
 <li>Dsj: Diversity and Social Justice in the U.S.</li>
 <li>Env: The Environment</li>
 </ul>
-
-<h2>
-<a id="development" class="anchor" href="#development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development</h2>
-
-<h3>
-<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h3>
-
-<ul>
-<li>Clone repo</li>
-<li><code>bundle install --path ./vendor/bundle</code></li>
-<li>Copy the database.yml file from app_configurations <code>rails/liberal_education_service/config</code> into <code>./config</code>
-</li>
-<li><code>bundle exec rails s</code></li>
-</ul>
-
-<h3>
-<a id="console-interaction" class="anchor" href="#console-interaction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Console Interaction</h3>
-
-<p>You can work at higher level:</p>
-
-<div class="highlight highlight-ruby"><pre><span class="pl-s3">CourseSearch</span>.search(
-  <span class="pl-s3">SearchParameters</span>.parse(<span class="pl-s1"><span class="pl-pds">'</span>writing_intensive=true<span class="pl-pds">'</span></span>)
-)</pre></div>
-
-<p>Or,</p>
-
-<div class="highlight highlight-ruby"><pre>p <span class="pl-k">=</span> <span class="pl-s3">SearchParameter</span>.<span class="pl-k">new</span>(<span class="pl-c1">:writing_intensive</span>, <span class="pl-s1"><span class="pl-pds">'</span>WI<span class="pl-pds">'</span></span>)
-<span class="pl-s3">LiberalEducationCourse</span>.where([p])</pre></div>
-
-<p>Either of those will return a collection of 0 or more LiberalEducationCourse objects.</p>
-
-<div class="highlight highlight-ruby"><pre>c <span class="pl-k">=</span> <span class="pl-s3">CourseSearch</span>.search(
-  <span class="pl-s3">SearchParameters</span>.parse(<span class="pl-s1"><span class="pl-pds">'</span>writing_intensive=true<span class="pl-pds">'</span></span>)
-).first
-c.id <span class="pl-c">#=&gt; "807690"</span>
-c.subject <span class="pl-c">#=&gt; "MATH"</span>
-c.catalog_number <span class="pl-c">#=&gt; "4067W"</span>
-c.title <span class="pl-c">#=&gt; "Actuarial Mathematics in Practice"</span>
-c.diversified_core <span class="pl-c">#=&gt; nil</span>
-c.designated_theme <span class="pl-c">#=&gt; nil</span>
-c.writing_intensive <span class="pl-c">#=&gt; true</span></pre></div>
       </section>
       <footer>
         <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
