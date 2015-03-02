@@ -105,11 +105,14 @@ RSpec.describe "Client requests courses:" do
       end
     end
 
-    describe "incorrect liberal education type" do
-      it "returns an empty json object" do
+    describe "search parameter without a value" do
+      it "returns all courses" do
         get "courses.json?q=easy_a"
-        parsed_response = JSON.parse(response.body)
-        expect(parsed_response["courses"]).to be_empty
+        invalid_filtered_response = JSON.parse(response.body)
+
+        get "courses.json"
+        unfiltered_response = JSON.parse(response.body)
+        expect(invalid_filtered_response).to eq(unfiltered_response)
       end
     end
   end
