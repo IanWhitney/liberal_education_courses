@@ -118,9 +118,16 @@ An empty courses collection will be returned if no courses match your criteria
 ```
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=basketweaving
 #=> {"courses": []}
+```
 
+And if you try to filter with invalid syntax, you'll get all courses back
+
+```
 https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=easy_a
-#=> {"courses": []}
+```
+will be the same as
+```
+https://apps.asr.umn.edu/liberal_education_courses/courses.json
 ```
 
 ## Limits
