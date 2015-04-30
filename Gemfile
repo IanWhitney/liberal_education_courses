@@ -6,7 +6,7 @@ ruby "2.1.5"
 gem "rails", "4.1.8"
 gem "ruby-oci8", "~> 2.1.0"
 gem "activerecord-oracle_enhanced-adapter", "~> 1.5.0"
-gem "query_string_search", "~> 0.0.5"
+gem "query_string_search", "~> 0.0.6"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.0"
@@ -18,7 +18,7 @@ group :development do
   gem "spring-commands-rspec"
   gem "capistrano",  "~> 3.1"
   gem "capistrano-rails", "~> 1.1"
-  gem 'capistrano-passenger'
+  gem "capistrano-passenger"
 end
 
 group :development, :test do
