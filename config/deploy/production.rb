@@ -5,17 +5,17 @@
 # unless any hosts have the primary property set.
 # Don"t declare `role :all`, it"s a meta role
 # role :app, %w{deploy@example.com}
-role :app, %w(asr-web-prod4.oit.umn.edu)
-role :web, %w(asr-web-prod4.oit.umn.edu)
+role :app, %w(asr-le-service-prod1.oit.umn.edu)
+role :web, %w(asr-le-service-prod1.oit.umn.edu)
 
 # Configuration
-set :user, "asrwebteam"
-set :server, "asr-web-prod4.oit.umn.edu"
+set :user, "swadm"
+set :server, "asr-le-service-prod1.oit.umn.edu"
 set :roles, %w(web app)
-set :web_root, "/swadm/www/apps.asr.umn.edu"
+set :web_root, "/swadm/www/"
 
 server(
-  "asr-web-prod4.oit.umn.edu",
+  "asr-le-service-prod1.oit.umn.edu",
   roles: fetch(:roles),
   web_root: fetch(:web_root),
   ssh_options: {
