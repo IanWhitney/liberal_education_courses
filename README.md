@@ -8,76 +8,76 @@ Full details on how you can use the query string to filter your results can be f
 
 ### Get all courses
 
-https://apps.asr.umn.edu/liberal_education_courses/courses.json
+https://liberal-education-courses.umn.edu/courses.json
 
 ### Get all courses with writing_intensive, designated_theme or diversified core
 
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=all
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=all
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=all
+- https://liberal-education-courses.umn.edu/courses.json?q=writing_intensive=all
+- https://liberal-education-courses.umn.edu/courses.json?q=designated_theme=all
+- https://liberal-education-courses.umn.edu/courses.json?q=diversified_core=all
 
 `all` and `true` are synonymous. So these could be written as:
 
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=true
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=true
+- https://liberal-education-courses.umn.edu/courses.json?q=writing_intensive=true
+- https://liberal-education-courses.umn.edu/courses.json?q=designated_theme=true
+- https://liberal-education-courses.umn.edu/courses.json?q=diversified_core=true
 
 ### Get all courses without writing_intensive, designated_theme or diversified core
 
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=none
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=none
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=none
+- https://liberal-education-courses.umn.edu/courses.json?q=writing_intensive=none
+- https://liberal-education-courses.umn.edu/courses.json?q=designated_theme=none
+- https://liberal-education-courses.umn.edu/courses.json?q=diversified_core=none
 
 `none` and `false` are synonymous. So these could be written as:
 
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=false
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=false
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=false
+- https://liberal-education-courses.umn.edu/courses.json?q=writing_intensive=false
+- https://liberal-education-courses.umn.edu/courses.json?q=designated_theme=false
+- https://liberal-education-courses.umn.edu/courses.json?q=diversified_core=false
 
 ### Get all courses that satisfy a specific designated theme or diversified core
 
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=dsj
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=ah
+- https://liberal-education-courses.umn.edu/courses.json?q=designated_theme=dsj
+- https://liberal-education-courses.umn.edu/courses.json?q=diversified_core=ah
 
 ### Get all courses that satisfy one or more designated theme or diversified core
 
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=dsj|gp
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=ah|his|socs
+- https://liberal-education-courses.umn.edu/courses.json?q=designated_theme=dsj|gp
+- https://liberal-education-courses.umn.edu/courses.json?q=diversified_core=ah|his|socs
 
 ## Querying on Subject
 
 ### Get all Liberal Education courses taught in JOUR
 
-https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=subject=JOUR
+https://liberal-education-courses.umn.edu/courses.json?q=subject=JOUR
 
 ### Get all Liberal Education courses taught in JOUR or Asian American Studies
 
-https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=subject=JOUR|AAS
+https://liberal-education-courses.umn.edu/courses.json?q=subject=JOUR|AAS
 
 ## Querying on Other Attributes
 
 You can search based on any attribute returned in the JSON except for title. All of the below will work, but they won't return many courses.
 
-- https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=course_id=807690
-- https://apps.asr.umn.edu/courses.json?q=subject=math,catalog_number=4067W
+- https://liberal-education-courses.umn.edu/courses.json?q=course_id=807690
+- https://liberal-education-courses.umn.eduth,catalog_number=4067W
 
 ## Querying on More Than One Attribute
 
 Separate attributes with a comma. Courses that match all providided attributes will be returned.
 
-https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true%2Csubject=JOUR
+https://liberal-education-courses.umn.edu/courses.json?q=writing_intensive=true%2Csubject=JOUR
 
 Will return courses that are writing intensive and that have the subject of JOUR
 
-https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=writing_intensive=true%2Cdiversified_core=ah
+https://liberal-education-courses.umn.edu/courses.json?q=writing_intensive=true%2Cdiversified_core=ah
 
 Will return courses that are writing intensive and that have the American History diversified core
 
-https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=all%2Cdiversified_core=ah
+https://liberal-education-courses.umn.edu/courses.json?q=designated_theme=all%2Cdiversified_core=ah
 
 Will return courses that meet any designated_theme and that have the American History diversified core
 
-https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=designated_theme=all%2Cdiversified_core=ah|litr
+https://liberal-education-courses.umn.edu/courses.json?q=designated_theme=all%2Cdiversified_core=ah|litr
 
 Will return courses that meet any designated_theme and that have either the American History or Literature diversified core
 
@@ -116,18 +116,18 @@ Only returns JSON. Limited course data
 An empty courses collection will be returned if no courses match your criteria
 
 ```
-https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=diversified_core=basketweaving
+https://liberal-education-courses.umn.edu/courses.json?q=diversified_core=basketweaving
 #=> {"courses": []}
 ```
 
 And if you try to filter with invalid syntax, you'll get all courses back
 
 ```
-https://apps.asr.umn.edu/liberal_education_courses/courses.json?q=easy_a
+https://liberal-education-courses.umn.edu/courses.json?q=easy_a
 ```
 will be the same as
 ```
-https://apps.asr.umn.edu/liberal_education_courses/courses.json
+https://liberal-education-courses.umn.edu/courses.json
 ```
 
 ## Limits
