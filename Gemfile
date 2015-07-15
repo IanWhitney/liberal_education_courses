@@ -1,12 +1,12 @@
 source "https://rubygems.org"
 
-ruby "2.1.5"
+ruby "2.1.6"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails"
-gem "rails", github: "rails/rails", tag: "v4.2.0"
-gem "ruby-oci8", "~> 2.1.0"
-gem "activerecord-oracle_enhanced-adapter", github: "rsim/oracle-enhanced", branch: "rails42"
-gem "query_string_search", "~> 0.0.4"
+gem "rails", github: "rails/rails", tag: "v4.2.3"
+gem "ruby-oci8", "~> 2.1.8"
+gem "activerecord-oracle_enhanced-adapter", "~> 1.6.0"
+gem "query_string_search", "~> 0.0.7"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.0"
@@ -19,6 +19,7 @@ group :development do
   gem "spring-commands-rspec"
   gem "capistrano",  "~> 3.1"
   gem "capistrano-rails", "~> 1.1"
+  gem "capistrano-passenger"
 end
 
 group :development, :test do
