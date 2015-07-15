@@ -17,7 +17,7 @@ gem "responders", "~> 2.0"
 group :development do
   gem "spring"
   gem "spring-commands-rspec"
-  gem "capistrano",  "~> 3.1"
+  gem "capistrano",  "~> 3.4.0"
   gem "capistrano-rails", "~> 1.1"
   gem "capistrano-passenger"
 end

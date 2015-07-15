@@ -211,7 +211,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-oracle_enhanced-adapter (~> 1.6.0)
   brakeman
-  capistrano (~> 3.1)
+  capistrano (~> 3.4.0)
   capistrano-passenger
   capistrano-rails (~> 1.1)
   jbuilder (~> 2.0)
