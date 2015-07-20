@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Client requests courses:" do
   describe "All courses" do
     it "returns json with courses collection" do
-      get "courses.json"
+      get "/courses.json"
       parsed_response = JSON.parse(response.body)
       expect(parsed_response.keys).to include("courses")
       random_course = parsed_response["courses"].sample
@@ -16,7 +16,7 @@ RSpec.describe "Client requests courses:" do
 
   describe "Writing Intensive" do
     it "returns json with courses collection" do
-      get "courses.json?q=writing_intensive=true"
+      get "/courses.json?q=writing_intensive=true"
       parsed_response = JSON.parse(response.body)
       expect(parsed_response.keys).to include("courses")
       random_course = parsed_response["courses"].sample
@@ -38,7 +38,7 @@ RSpec.describe "Client requests courses:" do
       themes = %w(gp TS Civ dSj enV)
 
       themes.each do |theme|
-        get "courses.json?q=designated_theme=#{theme}"
+        get "/courses.json?q=designated_theme=#{theme}"
         parsed_response = JSON.parse(response.body)
         expect(parsed_response.keys).to include("courses")
         random_course = parsed_response["courses"].sample
@@ -60,7 +60,7 @@ RSpec.describe "Client requests courses:" do
       cores = %w(ah Biol HIS lItr maTH phyS socs)
 
       cores.each do |core|
-        get "courses.json?q=diversified_core=#{core}"
+        get "/courses.json?q=diversified_core=#{core}"
         parsed_response = JSON.parse(response.body)
         expect(parsed_response.keys).to include("courses")
         random_course = parsed_response["courses"].sample
@@ -78,7 +78,7 @@ RSpec.describe "Client requests courses:" do
 
   describe "Multiple criteria queries" do
     it "returns courses that match all criteria" do
-      get "courses.json?q=writing_intensive=true%2Csubject=JOUR"
+      get "/courses.json?q=writing_intensive=true%2Csubject=JOUR"
       parsed_response = JSON.parse(response.body)
       expect(parsed_response.keys).to include("courses")
       parsed_response["courses"].each do |course|
@@ -86,7 +86,7 @@ RSpec.describe "Client requests courses:" do
         expect(course["subject"]).to eq("JOUR")
       end
 
-      get "courses.json?q=writing_intensive=true%2Cdiversified_core=ah"
+      get "/courses.json?q=writing_intensive=true%2Cdiversified_core=ah"
       parsed_response = JSON.parse(response.body)
       expect(parsed_response.keys).to include("courses")
       parsed_response["courses"].each do |course|
@@ -99,7 +99,7 @@ RSpec.describe "Client requests courses:" do
   describe "Invalid Queries" do
     describe "correct liberal education type, invalid option" do
       it "returns an empty courses collection" do
-        get "courses.json?q=diversified_core=basketweaving"
+        get "/courses.json?q=diversified_core=basketweaving"
         parsed_response = JSON.parse(response.body)
         expect(parsed_response["courses"]).to be_empty
       end
@@ -107,10 +107,10 @@ RSpec.describe "Client requests courses:" do
 
     describe "search parameter without a value" do
       it "returns all courses" do
-        get "courses.json?q=easy_a"
+        get "/courses.json?q=easy_a"
         invalid_filtered_response = JSON.parse(response.body)
 
-        get "courses.json"
+        get "/courses.json"
         unfiltered_response = JSON.parse(response.body)
         expect(invalid_filtered_response).to eq(unfiltered_response)
       end
