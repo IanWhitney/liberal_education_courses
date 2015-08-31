@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails"
-gem "rails", "4.2.3"
+gem "rails", "4.2.4"
 gem "ruby-oci8", "~> 2.1.8"
 gem "activerecord-oracle_enhanced-adapter", "~> 1.6.0"
 gem "query_string_search", "~> 0.0.7"
@@ -23,6 +23,6 @@ end
 group :development, :test do
   gem "rspec", "~> 3.3.0"
   gem "rspec-rails", "~> 3.3.0"
-  gem "rubocop", "~> 0.32.1", require: false
-  gem "brakeman", "~> 3.0.5", require: false
+  gem "rubocop", "~> 0.32", require: false
+  gem "brakeman", "~> 3", require: false
 end
