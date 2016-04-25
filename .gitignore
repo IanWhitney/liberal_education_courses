@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -18,4 +19,3 @@
 vendor/bundle
 config/initializers/local.rb
 config/database.yml
-bin
