@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails"
-gem "rails", "4.2.6"
+gem "rails", "4.2.7.1"
 gem "ruby-oci8", "~> 2.2.1"
 gem "activerecord-oracle_enhanced-adapter", "~> 1.6.0"
 gem "query_string_search", "~> 0.0.7"
