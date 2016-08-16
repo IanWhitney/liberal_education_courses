@@ -7,7 +7,7 @@ class DbCourseRepository < ActiveRecord::Base
     with crse_catalog_eff_keys as (
       select crse_id, max(effdt) as effdt
       from #{AsrWarehouse.schema_name}.ps_crse_catalog
-      where effdt <= '2016-01-19'
+      where effdt <= '2016-09-06'
       group by crse_id
     ),
     eff_crse_catalog as (
